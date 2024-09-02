@@ -4,17 +4,9 @@ import Examples from "./src/Examples.vue";
 </script>
 <template>
   <div
-    class="pt-12 lg:pt-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto"
+    class="pt-24 lg:pt-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto"
   >
-    <div class="flex flex-col lg:pt-8 gap-2">
-      <!-- <div class="text-2xl">
-        Markwhen is a plain text, markdown-like
-        <strong>journal language</strong>.<sup>*</sup>
-      </div> -->
-      <!-- <p>
-          *<em><strong>Journal language</strong></em
-          >: A series of dates with accompanying text.
-        </p> -->
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
       <div class="flex flex-col gap-1">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <h1 class="font-bold">Markwhen</h1>
@@ -46,7 +38,7 @@ import Examples from "./src/Examples.vue";
     </div>
     <Examples class="lg:mx-auto lg:w-[30rem]"> </Examples>
   </div>
-  <div class="flex flex-col items-start gap-2 py-4">
+  <!-- <div class="flex flex-col items-start gap-2 py-4">
     <div class="flex flex-col">
       <a href="https://meridiem.markwhen.com/example">Example</a>
       <a href="https://docs.markwhen.com/" class="underline">Documentation</a>
@@ -104,19 +96,45 @@ import Examples from "./src/Examples.vue";
         </li>
       </ul>
     </div>
-  </div>
-  <div class="lg:mx-auto lg:min-w-[30rem] flex flex-col gap-2">
-    <div class="flex flex-row items-center gap-2">
-      <img
-        src="https://meridiem.markwhen.com/icon_192.png"
-        class="h-5 w-5 rounded"
-      />
-      <h1 class="text-2xl">
-        <a href="https://meridiem.markwhen.com">Meridiem</a> is the
-        <span class="font-bold">editor</span>
-      </h1>
+  </div> -->
+  <div
+    class="pt-16 pb-8 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto"
+  >
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
+      <div class="flex flex-col gap-1">
+        <div class="gap-1 flex flex-row playfair text-2xl">
+          <h1 class="font-bold">
+            <a href="https://meridiem.markwhen.com" class="decoration-dotted"
+              >Meridiem</a
+            >
+          </h1>
+        </div>
+        <div class="flex flex-row gap-2 playfair">
+          <span class="text-stone-500 italic">noun</span>
+          <span class="text-stone-500">/mə·ˈri·dē·əm/</span>
+        </div>
+      </div>
+      <ol class="list-decimal text-2xl leading-9 playfair">
+        <li class="">
+          <!-- <span class="merriweather">Markwhen</span> -->
+          <!-- <span class="sourceSerif">Markwhen</span> -->
+          A markwhen editor that supports
+          <highlight class="bg-cyan-200">collaborative editing</highlight>,
+          <highlight class="bg-red-200">custom commands</highlight>,
+          <highlight class="bg-lime-200">snippets</highlight>,
+          <highlight class="bg-indigo-200">custom visualizations</highlight>,
+          <highlight class="bg-fuchsia-200">autocomplete</highlight>,
+          <highlight class="bg-sky-200">event highlighting</highlight>,
+          <!-- <highlight class="bg-yellow-200">timelines</highlight>, -->
+          <!-- <highlight class="bg-pink-200">calendars</highlight> and -->
+          and
+          <span class="bg-stone-700 text-stone-100 rounded shadow"
+            >&nbsp;more&nbsp;</span
+          >.
+        </li>
+      </ol>
     </div>
-    <div class="flex flex-row items-center gap-2">
+    <!-- <div class="flex flex-row items-center gap-2">
       <img
         src="https://meridiem.markwhen.com/logo-electron.svg"
         alt=""
@@ -126,28 +144,25 @@ import Examples from "./src/Examples.vue";
         href="https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/Meridiem-darwin-arm64-0.0.1.zip"
         >Download (macOS arm64 beta)</a
       >
-    </div>
+    </div> -->
   </div>
   <div class="px-4 pb-24 pt-2 w-full">
-    <div
-      class="flex flex-col w-full lg:w-2/3 mx-auto group border rounded-xl border-stone-400 bg-zinc-200"
+    <fieldset
+      class="flex flex-col w-full xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200"
     >
+      <legend class="mx-3 px-1 playfair">Meridiem Editor</legend>
       <a
         href="https://meridiem.markwhen.com"
         target="_blank"
-        class="flex flex-col py-1"
-      >
-        <div class="flex flex-row md:mx-auto md:min-w-[30rem] px-4 md:px-0">
-          <p class="">Open in new tab -></p>
-        </div>
+        class="flex flex-col px-4 py-px mb-1 mx-auto rounded-sm decoration-dotted"
+        >Open in new tab ->
       </a>
       <iframe
         src="https://meridiem.markwhen.com"
         height="650"
         width="100%"
-        class="rounded-xl bg-white"
       ></iframe>
-    </div>
+    </fieldset>
   </div>
 </template>
 
@@ -158,11 +173,8 @@ body {
 a {
   @apply underline;
 }
-.merriweather {
-  font-family: Merriweather, serif;
-}
-.sourceSerif {
-  font-family: Source Serif Pro, serif;
+.worksans {
+  font-family: Work Sans, sans-serif;
 }
 .playfair {
   font-family: Playfair Display, serif;
