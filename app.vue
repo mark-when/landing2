@@ -38,65 +38,6 @@ import Examples from "./src/Examples.vue";
     </div>
     <Examples class="lg:mx-auto lg:w-[30rem]"> </Examples>
   </div>
-  <!-- <div class="flex flex-col items-start gap-2 py-4">
-    <div class="flex flex-col">
-      <a href="https://meridiem.markwhen.com/example">Example</a>
-      <a href="https://docs.markwhen.com/" class="underline">Documentation</a>
-      <a
-        href="https://marketplace.visualstudio.com/items?itemName=Markwhen.markwhen"
-        >VS Code extension</a
-      >
-      <a href="https://obsidian.md/plugins?id=markwhen">Obsidian plugin</a>
-    </div>
-    <div class="flex flex-col">
-      <a href="https://github.com/mark-when">Github</a>
-      <ul class="list-inside list-disc">
-        <li>
-          <a href="https://github.com/mark-when/markwhen"
-            >mark-when/markwhen (general issue tracking)</a
-          >
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/parser">mark-when/parser</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/vscode"
-            >mark-when/vscode (VS Code extension)</a
-          >
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/mw">mark-when/mw (CLI)</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/obsidian-plugin"
-            >mark-when/obsidian-plugin</a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="flex flex-col">
-      <a href="https://docs.markwhen.com/visualizations.html">Visualizations</a>
-      <ul class="list-inside list-disc">
-        <li>
-          <a href="https://github.com/mark-when/view-client"
-            >mark-when/view-client</a
-          >
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/timeline">mark-when/timeline</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/calendar">mark-when/calendar</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/c2">mark-when/c2</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/resume">mark-when/resume</a>
-        </li>
-      </ul>
-    </div>
-  </div> -->
   <div
     class="pt-16 pb-8 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto"
   >
@@ -163,6 +104,68 @@ import Examples from "./src/Examples.vue";
         width="100%"
       ></iframe>
     </fieldset>
+  </div>
+  <div
+    class="flex flex-col items-start gap-2 pb-48 px-4 lg:w-[100ch] lg:mx-auto"
+  >
+    <div class="flex flex-col">
+      <a href="https://meridiem.markwhen.com/example">Example</a>
+      <a href="https://docs.markwhen.com/" class="underline">Documentation</a>
+      <a
+        href="https://marketplace.visualstudio.com/items?itemName=Markwhen.markwhen"
+        >VS Code extension</a
+      >
+      <a href="https://obsidian.md/plugins?id=markwhen">Obsidian plugin</a>
+      <a href="https://discord.com/invite/3rTpUD94ac">Discord</a>
+    </div>
+    <div class="flex flex-col">
+      <a href="https://github.com/mark-when">Github</a>
+      <ul class="list-inside list-disc">
+        <li>
+          <a href="https://github.com/mark-when/markwhen"
+            >mark-when/markwhen (general issue tracking)</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/parser">mark-when/parser</a>
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/vscode"
+            >mark-when/vscode (VS Code extension)</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/mw">mark-when/mw (CLI)</a>
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/obsidian-plugin"
+            >mark-when/obsidian-plugin</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-col">
+      <a href="https://docs.markwhen.com/visualizations.html">Visualizations</a>
+      <ul class="list-inside list-disc">
+        <li>
+          <a href="https://github.com/mark-when/view-client"
+            >mark-when/view-client</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/timeline">mark-when/timeline</a>
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/calendar">mark-when/calendar</a>
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/c2">mark-when/c2</a>
+        </li>
+        <li>
+          <a href="https://github.com/mark-when/resume">mark-when/resume</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
