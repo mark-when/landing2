@@ -7,9 +7,9 @@ import Examples from "./src/Examples.vue";
     class="pt-24 lg:pt-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
   >
     <div
-      class="hidden lg:block absolute top-60 w-3/4 border-animated -left-24 h-1/2 w-4 rounded pointer-events-none"
+      class="hidden lg:block absolute top-60 w-3/4 border-animated -left-24 h-1/2 rounded pointer-events-none"
     ></div>
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-2">
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
       <div class="flex flex-col gap-1">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <h1 class="font-bold z-10 bg-zinc-100 px-2">Markwhen</h1>
@@ -47,7 +47,7 @@ import Examples from "./src/Examples.vue";
     <div
       class="hidden lg:block absolute top-0 border-animated-2 -left-full right-[14rem] h-[7.25rem] rounded pointer-events-none"
     ></div>
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-2 z-0">
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 z-0">
       <div class="flex flex-col gap-1 px-2">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <h1 class="font-bold">
