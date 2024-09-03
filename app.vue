@@ -42,23 +42,26 @@ import Examples from "./src/Examples.vue";
     <Examples class="lg:mx-auto lg:w-[30rem]"> </Examples>
   </div>
   <div
-    class="pt-16 pb-8 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto"
+    class="pt-16 pb-8 flex flex-col px-2 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
   >
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
+    <div
+      class="hidden lg:block absolute top-0 border-animated-2 -left-full right-[14rem] h-[7.25rem] rounded pointer-events-none"
+    ></div>
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 z-0">
       <div class="flex flex-col gap-1">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <h1 class="font-bold">
-            <a href="https://meridiem.markwhen.com" class="decoration-dotted"
+            <a href="https://meridiem.markwhen.com" class="decoration-dotted px-2 bg-zinc-100"
               >Meridiem</a
             >
           </h1>
         </div>
-        <div class="flex flex-row gap-2 playfair">
+        <div class="flex flex-row gap-2 playfair px-2">
           <span class="text-stone-500 italic">noun</span>
           <span class="text-stone-500">/mə·ˈri·dē·əm/</span>
         </div>
       </div>
-      <ol class="list-decimal text-2xl leading-9 playfair">
+      <ol class="list-decimal text-2xl leading-9 playfair px-2">
         <li class="">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
@@ -92,7 +95,7 @@ import Examples from "./src/Examples.vue";
   </div>
   <div class="px-4 pb-24 pt-2 w-full">
     <fieldset
-      class="flex flex-col w-full xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200 shadow-lg"
+      class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200 shadow-lg"
     >
       <legend class="mx-3 px-1 playfair">Meridiem Editor</legend>
       <a
@@ -194,7 +197,7 @@ a {
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 1px, 24px 1px, 1px 24px, 0px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
-  animation: dash 12s linear infinite;
+  animation: dash 30s linear infinite;
 }
 
 @keyframes dash {
@@ -203,6 +206,23 @@ a {
   }
   to {
     background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+  }
+}
+
+.border-animated-2 {
+  background: linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(0deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(0deg, #a1a1aa 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 24px 0px, 24px 1px, 0px 24px, 1px 24px;
+  background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
+  animation: dash-reverse 60s linear infinite;
+}
+
+@keyframes dash-reverse {
+  to {
+    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
   }
 }
 </style>

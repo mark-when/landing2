@@ -202,7 +202,7 @@ watchEffect(() => {
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 1px, 24px 1px, 1px 24px, 1px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
-  animation: dash 12s linear infinite;
+  animation: dash 30s linear infinite;
 }
 
 @keyframes dash {
