@@ -47,7 +47,7 @@ endGroup
   Frontmatter: `title: Vacation schedule
 description: Things to do on vacation
 
-2025-08-14 / 1 week: Have a good time`
+2025-08-14 / 1 week: Have a good time`,
 });
 
 const exampleSelected = ref<string>("Basic Syntax");
@@ -126,8 +126,10 @@ watchEffect(() => {
         <path d="m19 12-7 7-7-7" />
       </svg>
     </div>
-    <fieldset class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2">
-      <legend class="px-1 mx-1 playfair">Output</legend>
+    <fieldset
+      class="border-animated border-zinc-400 p-3 rounded-sm flex flex-col gap-2"
+    >
+      <legend class="px-1 mx-1 playfair bg-zinc-100">Output</legend>
       <div class="flex flex-row gap-2">
         <ExampleButton
           v-for="output in outputs"
@@ -191,4 +193,21 @@ watchEffect(() => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.border-animated {
+  background: linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(0deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(0deg, #a1a1aa 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 24px 1px, 24px 1px, 1px 24px, 1px 24px;
+  background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
+  animation: dash 8s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+  }
+}
+</style>

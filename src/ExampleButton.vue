@@ -9,7 +9,7 @@ defineProps<{
     class="rounded px-2 border"
     :class="{
       'border-zinc-800 bg-zinc-600 text-zinc-50': selected,
-      'border-zinc-300 bg-zinc-100 text-zinc-900 shadow': !selected,
+      'border-zinc-300 bg-zinc-50 text-zinc-900 shadow': !selected,
     }"
   >
     <slot></slot>

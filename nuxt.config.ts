@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      title: "Markwhen",
       link: [
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {

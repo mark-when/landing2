@@ -89,7 +89,7 @@ import Examples from "./src/Examples.vue";
   </div>
   <div class="px-4 pb-24 pt-2 w-full">
     <fieldset
-      class="flex flex-col w-full xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200"
+      class="flex flex-col w-full xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200 shadow-lg"
     >
       <legend class="mx-3 px-1 playfair">Meridiem Editor</legend>
       <a
@@ -171,7 +171,7 @@ import Examples from "./src/Examples.vue";
 
 <style>
 body {
-  @apply bg-zinc-200;
+  @apply bg-zinc-100;
 }
 a {
   @apply underline;
