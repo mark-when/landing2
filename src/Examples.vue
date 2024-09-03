@@ -2,20 +2,17 @@
 import ExampleButton from "./ExampleButton.vue";
 import { ref } from "vue";
 import { parse } from "@markwhen/parser";
+import ContentEditable from "./ContentEditable.vue";
+import { useLpc } from "./viewOrchestrator";
 
-const examples = [
-  [
-    "Basic Syntax",
-    `2025-04-09: Single date
+const ex = reactive<Record<string, string>>({
+  "Basic Syntax": `2025-04-09: Single date
 2025-01-22 / 2025-01-24: Date range
 
 Dec 1 2025: Supports multiple date formats
 And longer descriptions
 `,
-  ],
-  [
-    "Groups",
-    `group Part one
+  Groups: `group Part one
 2024-12-24: Christmas Eve
 2024-12-25: Christmas
 endGroup
@@ -25,41 +22,92 @@ group Part two
 2025-01-01: New Year's Day
 endGroup
 `,
-  ],
-  [
-    "Tags",
-    `#holiday: red
+  Tags: `2025-01-01: New Year's Day #holiday
 
-2025-01-01: New Year's Day #holiday`,
-  ],
-  ["Checklists", ``],
-];
-const exampleSelected = ref<string>(examples[0][0]);
+2024-10-31: Scary time #haloween #holiday`,
+  Checklists: `2024:
+- [x] lose 70 pounds
+- [x] learn to write markwhen
+- [] build a house
 
-const outputs = ["JSON", "Timeline", "Oneview", "iCal"];
+2025:
+- [] gain 20 pounds
+- [] go to the moon
+- [] find a new place to eat`,
+  Links: `2025-01-01: New Year's Day
+- [] [Google](https://google.com)
+- [] [DuckDuckGo](https://duckduckgo.com)
+- [] [Bing](https://bing.com)`,
+  Timezones: `timezone: America/New_York
+
+2025-01-01 12:00: New Year's Day`,
+  Recurrences: `2025-01-01 every year for 10 years: Copy last year's resolutions to this year
+
+2024-12-24 9am every 60 minutes x12: Check for Santa`,
+  Frontmatter: `title: Vacation schedule
+description: Things to do on vacation
+
+2025-08-14 / 1 week: Have a good time`
+});
+
+const exampleSelected = ref<string>("Basic Syntax");
+
+const outputs = ["JSON", "Timeline", "Calendar", "Oneview"];
 const outputSelected = ref<string>(outputs[1]);
+
+const parseOutput = computed(() => parse(ex[exampleSelected.value]));
+const timelineUrl = `https://timeline.markwhen.com/`;
+const calendarUrl = `https://calendar.markwhen.com/`;
+const ovUrl = "https://c2-dhz.pages.dev";
+
+const timelineFrame = ref<HTMLIFrameElement>();
+const calendarFrame = ref<HTMLIFrameElement>();
+const oneviewFrame = ref<HTMLIFrameElement>();
+const currentFrame = computed(() => {
+  if (outputSelected.value === "Timeline") return timelineFrame.value;
+  if (outputSelected.value === "Calendar") return calendarFrame.value;
+  if (outputSelected.value === "Oneview") return oneviewFrame.value;
+});
+let postRequest = (s: string, value: any) => {};
+
+onMounted(() => {
+  postRequest = useLpc(currentFrame).postRequest;
+  postRequest("markwhenState", toRaw(state.value));
+  document.getElementById("timelineFrame")?.addEventListener("load", () => {
+    postRequest("markwhenState", toRaw(state.value));
+  });
+});
+
+const state = computed(() => {
+  return {
+    rawText: ex[exampleSelected.value],
+    parsed: parseOutput.value.timelines,
+    transformed: parseOutput.value.timelines[0].events,
+  };
+});
+watchEffect(() => {
+  let a = currentFrame.value;
+  postRequest("markwhenState", toRaw(state.value));
+});
 </script>
 
 <template>
   <div class="flex flex-col gap-1">
     <fieldset class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2">
       <legend class="px-1 mx-1 playfair">Markwhen input</legend>
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-row gap-2 wrap flex-wrap">
         <ExampleButton
-          v-for="example in examples"
-          :selected="exampleSelected === example[0]"
-          @click="exampleSelected = example[0]"
-          >{{ example[0] }}</ExampleButton
+          v-for="example in Object.keys(ex)"
+          :selected="exampleSelected === example"
+          @click="exampleSelected = example"
+          >{{ example }}</ExampleButton
         >
       </div>
-      <div
-        contenteditable="true"
-        class="bg-zinc-50 rounded-s h-48 font-mono text-sm p-2 whitespace-pre"
-        v-for="example in examples"
-        v-show="exampleSelected === example[0]"
-      >
-        {{ example[1] }}
-      </div>
+      <ContentEditable
+        v-for="example in Object.keys(ex)"
+        v-model="ex[example]"
+        v-show="exampleSelected === example"
+      ></ContentEditable>
     </fieldset>
     <div class="flex flex-row items-center justify-center text-zinc-400">
       <svg
@@ -89,12 +137,40 @@ const outputSelected = ref<string>(outputs[1]);
         >
       </div>
       <div
-        class="bg-zinc-50 rounded-s h-64 font-mono text-xs p-2 whitespace-pre overflow-y-scroll"
+        v-show="outputSelected === 'JSON'"
+        class="bg-zinc-50 rounded-s h-80 font-mono text-xs p-2 whitespace-pre-wrap overflow-scroll"
       >
-        {{ parse("") }}
+        {{ parseOutput }}
+      </div>
+      <div
+        class="bg-zinc-50 rounded-s h-80 font-mono text-xs p-2 whitespace-pre-wrap overflow-scroll"
+        v-show="outputSelected === 'Timeline'"
+      >
+        <iframe
+          ref="timelineFrame"
+          id="timelineFrame"
+          :src="timelineUrl"
+          class="w-full h-full"
+        ></iframe>
+      </div>
+      <div
+        class="bg-zinc-50 rounded-s h-80 font-mono text-xs p-2 whitespace-pre-wrap overflow-scroll"
+        v-show="outputSelected === 'Calendar'"
+      >
+        <iframe
+          ref="calendarFrame"
+          :src="calendarUrl"
+          class="w-full h-full"
+        ></iframe>
+      </div>
+      <div
+        class="bg-zinc-50 rounded-s h-80 font-mono text-xs p-2 whitespace-pre-wrap overflow-scroll"
+        v-show="outputSelected === 'Oneview'"
+      >
+        <iframe ref="oneviewFrame" :src="ovUrl" class="w-full h-full"></iframe>
       </div>
     </fieldset>
-    <span class="text-xs text-zinc-400 italic ml-auto"
+    <!-- <span class="text-xs text-zinc-400 italic ml-auto"
       >If you like playing with this you should try the
       <a href="https://meridiem.markwhen.com">editor</a
       ><svg
@@ -111,7 +187,7 @@ const outputSelected = ref<string>(outputs[1]);
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M6 6h6a3 3 0 0 1 3 3v10l-4 -4m8 0l-4 4" /></svg
-    ></span>
+    ></span> -->
   </div>
 </template>
 
