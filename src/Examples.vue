@@ -92,8 +92,8 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
-    <fieldset class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2">
+  <div class="flex flex-col gap-1 z-0">
+    <fieldset class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2 bg-zinc-100">
       <legend class="px-1 mx-1 playfair">Markwhen input</legend>
       <div class="flex flex-row gap-2 wrap flex-wrap">
         <ExampleButton
@@ -109,7 +109,7 @@ watchEffect(() => {
         v-show="exampleSelected === example"
       ></ContentEditable>
     </fieldset>
-    <div class="flex flex-row items-center justify-center text-zinc-400">
+    <div class="flex flex-row items-center justify-center text-zinc-400 lg:h-4 lg:w-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -120,14 +120,14 @@ watchEffect(() => {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="h-4 w-4 mt-2"
+        class="h-4 w-4 mt-2 lg:hidden"
       >
         <path d="M12 5v14" />
         <path d="m19 12-7 7-7-7" />
       </svg>
     </div>
     <fieldset
-      class="border-animated border-zinc-400 p-3 rounded-sm flex flex-col gap-2"
+      class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2 bg-zinc-100"
     >
       <legend class="px-1 mx-1 playfair bg-zinc-100">Output</legend>
       <div class="flex flex-row gap-2">
@@ -202,7 +202,7 @@ watchEffect(() => {
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 1px, 24px 1px, 1px 24px, 1px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
-  animation: dash 8s linear infinite;
+  animation: dash 12s linear infinite;
 }
 
 @keyframes dash {

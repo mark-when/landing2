@@ -4,19 +4,22 @@ import Examples from "./src/Examples.vue";
 </script>
 <template>
   <div
-    class="pt-24 lg:pt-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto"
+    class="pt-24 lg:pt-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
   >
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
+    <div
+      class="hidden lg:block absolute top-60 w-3/4 border-animated -left-24 h-1/2 w-4 rounded pointer-events-none"
+    ></div>
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-2">
       <div class="flex flex-col gap-1">
         <div class="gap-1 flex flex-row playfair text-2xl">
-          <h1 class="font-bold">Markwhen</h1>
+          <h1 class="font-bold z-10 bg-zinc-100 px-2">Markwhen</h1>
         </div>
-        <div class="flex flex-row gap-2 playfair">
+        <div class="flex flex-row gap-2 playfair px-2">
           <span class="text-stone-500 italic">noun</span>
           <span class="text-stone-500">/mɑrk·wɛn/</span>
         </div>
       </div>
-      <ol class="list-decimal">
+      <ol class="list-decimal px-2">
         <li class="text-2xl leading-9 playfair">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
@@ -181,5 +184,25 @@ a {
 }
 .playfair {
   font-family: Playfair Display, serif;
+}
+
+.border-animated {
+  background: linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(0deg, #a1a1aa 50%, transparent 50%),
+    linear-gradient(0deg, #a1a1aa 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 24px 1px, 24px 1px, 1px 24px, 0px 24px;
+  background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
+  animation: dash 12s linear infinite;
+}
+
+@keyframes dash {
+  from {
+    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+  }
+  to {
+    background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+  }
 }
 </style>
