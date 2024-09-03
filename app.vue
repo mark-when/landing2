@@ -47,8 +47,8 @@ import Examples from "./src/Examples.vue";
     <div
       class="hidden lg:block absolute top-0 border-animated-2 -left-full right-[14rem] h-[7.25rem] rounded pointer-events-none"
     ></div>
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 z-0">
-      <div class="flex flex-col gap-1">
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-2 z-0">
+      <div class="flex flex-col gap-1 px-2">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <h1 class="font-bold">
             <a href="https://meridiem.markwhen.com" class="decoration-dotted px-2 bg-zinc-100"
@@ -61,7 +61,7 @@ import Examples from "./src/Examples.vue";
           <span class="text-stone-500">/mə·ˈri·dē·əm/</span>
         </div>
       </div>
-      <ol class="list-decimal text-2xl leading-9 playfair px-2">
+      <ol class="list-decimal text-2xl leading-9 playfair px-4">
         <li class="">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
@@ -190,10 +190,10 @@ a {
 }
 
 .border-animated {
-  background: linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
-    linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
-    linear-gradient(0deg, #a1a1aa 50%, transparent 50%),
-    linear-gradient(0deg, #a1a1aa 50%, transparent 50%);
+  background: linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
+    linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
+    linear-gradient(0deg, #cfcfd4 50%, transparent 50%),
+    linear-gradient(0deg, #cfcfd4 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 1px, 24px 1px, 1px 24px, 0px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
@@ -210,10 +210,10 @@ a {
 }
 
 .border-animated-2 {
-  background: linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
-    linear-gradient(90deg, #a1a1aa 50%, transparent 50%),
-    linear-gradient(0deg, #a1a1aa 50%, transparent 50%),
-    linear-gradient(0deg, #a1a1aa 50%, transparent 50%);
+  background: linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
+    linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
+    linear-gradient(0deg, #cfcfd4 50%, transparent 50%),
+    linear-gradient(0deg, #cfcfd4 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 0px, 24px 1px, 0px 24px, 1px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
