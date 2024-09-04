@@ -15,6 +15,13 @@ export default defineNuxtConfig({
           rel: "stylesheet",
         },
       ],
+      script: [
+        {
+          defer: true,
+          src: "https://static.cloudflareinsights.com/beacon.min.js",
+          "data-cf-beacon": '{"token": "1422b56abdfb49a88de13b0e2edc2805"}',
+        },
+      ],
     },
   },
   devtools: { enabled: true },
