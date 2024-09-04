@@ -23,8 +23,9 @@ import Examples from "./src/Examples.vue";
         <li class="text-2xl leading-9 playfair">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
-          A markdown-like language for plainly writing
+          A markdown-like <em>journal language</em> for plainly writing
           <highlight class="bg-cyan-200">logs</highlight>,
+          <highlight class="bg-slate-200">gantt charts</highlight>,
           <highlight class="bg-orange-200">blogs</highlight>,
           <highlight class="bg-red-200">feeds</highlight>,
           <highlight class="bg-lime-200">notes</highlight>,
