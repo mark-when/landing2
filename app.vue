@@ -51,7 +51,9 @@ import Examples from "./src/Examples.vue";
       <div class="flex flex-col gap-1 px-2">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <h1 class="font-bold">
-            <a href="https://meridiem.markwhen.com" class="decoration-dotted px-2 bg-zinc-100"
+            <a
+              href="https://meridiem.markwhen.com"
+              class="decoration-dotted px-2 bg-zinc-100"
               >Meridiem</a
             >
           </h1>
@@ -112,11 +114,13 @@ import Examples from "./src/Examples.vue";
     </fieldset>
   </div>
   <div
-    class="flex flex-col items-start gap-2 pb-48 px-4 lg:w-[100ch] lg:mx-auto"
+    class="flex flex-col items-start gap-2 pb-48 px-4 lg:w-[100ch] lg:mx-auto playfair"
   >
     <div class="flex flex-col">
+      <a href="https://docs.markwhen.com/" class="underline mb-2"
+        >Documentation</a
+      >
       <a href="https://meridiem.markwhen.com/example">Example</a>
-      <a href="https://docs.markwhen.com/" class="underline">Documentation</a>
       <a
         href="https://marketplace.visualstudio.com/items?itemName=Markwhen.markwhen"
         >VS Code extension</a
@@ -124,58 +128,223 @@ import Examples from "./src/Examples.vue";
       <a href="https://obsidian.md/plugins?id=markwhen">Obsidian plugin</a>
       <a href="https://discord.com/invite/3rTpUD94ac">Discord</a>
     </div>
+
     <div class="flex flex-col">
       <a href="https://github.com/mark-when">Github</a>
-      <ul class="list-inside list-disc">
-        <li>
-          <a href="https://github.com/mark-when/markwhen"
-            >mark-when/markwhen (general issue tracking)</a
-          >
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/parser">mark-when/parser</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/vscode"
-            >mark-when/vscode (VS Code extension)</a
-          >
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/mw">mark-when/mw (CLI)</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/obsidian-plugin"
-            >mark-when/obsidian-plugin</a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="flex flex-col">
-      <a href="https://docs.markwhen.com/visualizations.html">Visualizations</a>
-      <ul class="list-inside list-disc">
-        <li>
-          <a href="https://github.com/mark-when/view-client"
-            >mark-when/view-client</a
-          >
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/timeline">mark-when/timeline</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/calendar">mark-when/calendar</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/c2">mark-when/c2</a>
-        </li>
-        <li>
-          <a href="https://github.com/mark-when/resume">mark-when/resume</a>
-        </li>
-      </ul>
+      <table>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/markwhen"
+              >General issue tracking</a
+            >
+          </td>
+          <td>
+            <a href="https://github.com/mark-whaen/markwhen"
+              >mark-when/markwhen</a
+            >
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=markwhen&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/obsidian-plugin"
+              >Obsidian Plugin</a
+            >
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/obsidian-plugin"
+              >mark-when/obsidian-plugin</a
+            >
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=obsidian-plugin&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/mw">Markwhen CLI</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/mw">mark-when/mw</a>
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=mw&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/timeline">Timeline</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/timeline"
+              >mark-when/timeline</a
+            >
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=timeline&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/mark-when/parser">Parser</a></td>
+          <td>
+            <a href="https://github.com/mark-when/parser">mark-when/parser</a>
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=parser&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/vscode">VS Code Extension</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/vscode">mark-when/vscode</a>
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=vscode&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/view-client"
+              >View client library</a
+            >
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/view-client"
+              >mark-when/view-client</a
+            >
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=view-client&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/calendar">Calendar</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/calendar"
+              >mark-when/calendar</a
+            >
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=calendar&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/c2">C2</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/c2">mark-when/c2</a>
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=c2&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/resume">Resume</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/resume">mark-when/resume</a>
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=resume&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 
 <style>
+td {
+  @apply pr-8;
+}
 body {
   @apply bg-zinc-100;
 }

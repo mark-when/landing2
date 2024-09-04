@@ -93,8 +93,12 @@ watchEffect(() => {
 
 <template>
   <div class="flex flex-col gap-1 z-0">
-    <fieldset class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2 bg-zinc-100">
-      <legend class="px-1 mx-1 playfair">Markwhen input</legend>
+    <fieldset
+      class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2 bg-zinc-100"
+    >
+      <legend class="playfair">
+        <span class="px-1 mx-1">Markwhen input</span>
+      </legend>
       <div class="flex flex-row gap-2 wrap flex-wrap">
         <ExampleButton
           v-for="example in Object.keys(ex)"
@@ -109,7 +113,9 @@ watchEffect(() => {
         v-show="exampleSelected === example"
       ></ContentEditable>
     </fieldset>
-    <div class="flex flex-row items-center justify-center text-zinc-400 lg:h-4 lg:w-4">
+    <div
+      class="flex flex-row items-center justify-center text-zinc-400 lg:h-4 lg:w-4"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
