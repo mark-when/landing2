@@ -114,7 +114,7 @@ import Examples from "./src/Examples.vue";
     </fieldset>
   </div>
   <div
-    class="flex flex-col items-start gap-2 pb-48 px-4 lg:w-[100ch] lg:mx-auto playfair"
+    class="flex flex-col items-start gap-2 pb-48 px-4 lg:w-[100ch] lg:mx-auto playfair overflow-scroll"
   >
     <div class="flex flex-col">
       <a href="https://docs.markwhen.com/" class="underline mb-2"
