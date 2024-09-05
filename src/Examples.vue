@@ -108,6 +108,7 @@ watchEffect(() => {
         >
       </div>
       <ContentEditable
+        class="border border-zinc-400"
         v-for="example in Object.keys(ex)"
         v-model="ex[example]"
         v-show="exampleSelected === example"
@@ -151,7 +152,7 @@ watchEffect(() => {
         {{ parseOutput }}
       </div>
       <div
-        class="bg-zinc-50 rounded-s h-80 font-mono text-xs p-2 whitespace-pre-wrap overflow-scroll"
+        class="bg-zinc-50 rounded-s h-80 font-mono text-xs p-2 whitespace-pre-wrap overflow-scroll border border-zinc-400"
         v-show="outputSelected === 'Timeline'"
       >
         <iframe
