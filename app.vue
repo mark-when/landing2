@@ -140,7 +140,7 @@ import Examples from "./src/Examples.vue";
             >
           </td>
           <td>
-            <a href="https://github.com/mark-whaen/markwhen"
+            <a href="https://github.com/mark-when/markwhen"
               >mark-when/markwhen</a
             >
           </td>
