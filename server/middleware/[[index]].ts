@@ -22,5 +22,5 @@ export default defineEventHandler(async (r) => {
       return;
     }
   }
-  return sendRedirect(r, `https://meridiem.markwhen.com/${path}`);
+  return sendRedirect(r, `https://meridiem.markwhen.com${path}`);
 });
