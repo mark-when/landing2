@@ -1,5 +1,5 @@
 export default defineEventHandler(async (r) => {
-  const path = r.context.params?.index;
+  const path = r.path;
   if (path) {
     if (Array.isArray(path)) {
       if (path.length) {
