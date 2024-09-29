@@ -48,6 +48,13 @@ endGroup
 description: Things to do on vacation
 
 2025-08-14 / 1 week: Have a good time`,
+  Properties: `group Reunion Activities
+leader: Jane Smith
+
+2025-09-09: Video call
+attendees: [sarah@example.com, igor@example.com]
+
+endGroup`
 });
 
 const exampleSelected = ref<string>("Basic Syntax");
@@ -81,8 +88,8 @@ onMounted(() => {
 const state = computed(() => {
   return {
     rawText: ex[exampleSelected.value],
-    parsed: parseOutput.value.timelines,
-    transformed: parseOutput.value.timelines[0].events,
+    parsed: parseOutput.value,
+    transformed: parseOutput.value.events,
   };
 });
 watchEffect(() => {

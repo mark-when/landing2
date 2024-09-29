@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@markwhen/parser": "^0.11.4",
+    "@markwhen/parser": "^0.12.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "nuxt": "^3.13.0",
     "vue": "^3.4.38",
