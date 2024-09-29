@@ -360,10 +360,10 @@ a {
 }
 
 .border-animated {
-  background: linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
-    linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
-    linear-gradient(0deg, #cfcfd4 50%, transparent 50%),
-    linear-gradient(0deg, #cfcfd4 50%, transparent 50%);
+  background: linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
+    linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
+    linear-gradient(0deg, #c1c1c8 50%, transparent 50%),
+    linear-gradient(0deg, #c1c1c8 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 1px, 24px 1px, 1px 24px, 0px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
@@ -380,10 +380,10 @@ a {
 }
 
 .border-animated-2 {
-  background: linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
-    linear-gradient(90deg, #cfcfd4 50%, transparent 50%),
-    linear-gradient(0deg, #cfcfd4 50%, transparent 50%),
-    linear-gradient(0deg, #cfcfd4 50%, transparent 50%);
+  background: linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
+    linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
+    linear-gradient(0deg, #c1c1c8 50%, transparent 50%),
+    linear-gradient(0deg, #c1c1c8 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 24px 0px, 24px 1px, 0px 24px, 1px 24px;
   background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
