@@ -7,7 +7,7 @@ import { useLpc } from "./viewOrchestrator";
 
 const ex = reactive<Record<string, string>>({
   "Basic Syntax": `2025-04-09: Single date
-2025-01-22 / 2025-01-24: Date range
+2025-01-22 / 2026-10-24: Date range
 
 Dec 1 2025: Supports multiple date formats
 And longer descriptions
