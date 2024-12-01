@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
+
+const latestBinaryVersion = ref("0.2.1");
+onMounted(async () => {
+  const res = await fetch(
+    "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json"
+  );
+  const json = await res.json();
+  latestBinaryVersion.value = json.currentRelease;
+});
 </script>
 <template>
   <div
@@ -84,17 +93,22 @@ import Examples from "./src/Examples.vue";
         </li>
       </ol>
     </div>
-    <!-- <div class="flex flex-row items-center gap-2">
-      <img
-        src="https://meridiem.markwhen.com/logo-electron.svg"
-        alt=""
-        class="h-5 w-5 rounded"
-      />
+    <div class="flex flex-row items-end gap-2 px-8">
       <a
-        href="https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/Meridiem-darwin-arm64-0.0.1.zip"
-        >Download (macOS arm64 beta)</a
+        class="flex flex-row gap-4 items-center group no-underline"
+        :href="`https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/Meridiem-darwin-arm64-${latestBinaryVersion}.zip`"
       >
-    </div> -->
+        <img
+          src="https://meridiem.markwhen.com/logo-electron.svg"
+          alt=""
+          class="h-12 w-12 rounded-xl shadow group-hover:shadow-lg transition"
+        />
+        <div class="flex flex-col">
+          <span class=""> Download (macOS arm64 beta) </span>
+          <span class="text-sm text-zinc-400">v{{ latestBinaryVersion }}</span>
+        </div>
+      </a>
+    </div>
   </div>
   <div class="px-4 pb-24 pt-2 w-full">
     <fieldset
