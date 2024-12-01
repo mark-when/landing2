@@ -2,7 +2,7 @@
 import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
 
-const latestBinaryVersion = ref("0.2.1");
+const latestBinaryVersion = ref("0.2.2");
 onMounted(async () => {
   const res = await fetch(
     "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json"
