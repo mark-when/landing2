@@ -136,6 +136,7 @@ onMounted(async () => {
         >Documentation</a
       >
       <a href="https://meridiem.markwhen.com/example">Example</a>
+      <a href="https://meridiem.markwhen.com">Meridiem</a>
       <a
         href="https://marketplace.visualstudio.com/items?itemName=Markwhen.markwhen"
         >VS Code extension</a
@@ -147,6 +148,27 @@ onMounted(async () => {
     <div class="flex flex-col">
       <a href="https://github.com/mark-when">Github</a>
       <table>
+        <tr>
+          <td>
+            <a href="https://github.com/mark-when/landing2">This website</a>
+          </td>
+          <td>
+            <a href="https://github.com/mark-when/landing2"
+              >mark-when/landing2</a
+            >
+          </td>
+          <td>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=landing2&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170"
+              height="20"
+              title="GitHub"
+            >
+            </iframe>
+          </td>
+        </tr>
         <tr>
           <td>
             <a href="https://github.com/mark-when/markwhen"
