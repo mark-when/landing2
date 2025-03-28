@@ -29,8 +29,8 @@ onMounted(async () => {
           <h1 class="font-bold z-10 bg-zinc-100 px-2">Markwhen</h1>
         </div>
         <div class="flex flex-row gap-2 playfair px-2">
-          <span class="text-stone-500 italic">noun</span>
-          <span class="text-stone-500">/mɑrk·wɛn/</span>
+          <span class="text-stone-400 italic">noun</span>
+          <span class="text-stone-400">/mɑrk·wɛn/</span>
         </div>
       </div>
       <ol class="list-decimal px-2">
@@ -48,7 +48,7 @@ onMounted(async () => {
           <highlight class="bg-sky-200">todos</highlight>,
           <highlight class="bg-yellow-200">timelines</highlight>,
           <highlight class="bg-pink-200">calendars</highlight> or
-          <span class="bg-stone-700 text-stone-100 rounded shadow"
+          <span class="bg-stone-800 text-stone-100 rounded shadow"
             >&nbsp;anything that happens over time&nbsp;</span
           >.
         </li>
@@ -74,8 +74,8 @@ onMounted(async () => {
           </h1>
         </div>
         <div class="flex flex-row gap-2 playfair px-2">
-          <span class="text-stone-500 italic">noun</span>
-          <span class="text-stone-500">/mə·ˈri·dē·əm/</span>
+          <span class="text-stone-400 italic">noun</span>
+          <span class="text-stone-400">/mə·ˈri·dē·əm/</span>
         </div>
       </div>
       <ol class="list-decimal text-2xl leading-9 playfair px-4">
@@ -92,7 +92,7 @@ onMounted(async () => {
           <!-- <highlight class="bg-yellow-200">timelines</highlight>, -->
           <!-- <highlight class="bg-pink-200">calendars</highlight> and -->
           and
-          <span class="bg-stone-700 text-stone-100 rounded shadow"
+          <span class="bg-stone-800 text-stone-100 rounded shadow"
             >&nbsp;more&nbsp;</span
           >.
         </li>
@@ -119,11 +119,15 @@ onMounted(async () => {
     <fieldset
       class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200 shadow-lg"
     >
-      <legend class="mx-3 px-1 playfair inline-table">Meridiem Editor</legend>
+      <legend
+        class="mx-3 px-1 playfair inline-table text-white rounded bg-green-900 shadow-lg"
+      >
+        Meridiem Editor
+      </legend>
       <a
         href="https://meridiem.markwhen.com"
         target="_blank"
-        class="flex flex-col px-4 py-px mb-1 mx-auto rounded-sm decoration-dotted"
+        class="flex flex-col px-4 py-px mb-1 mx-auto rounded-sm decoration-dotted text-stone-900"
         >Open in new tab ->
       </a>
       <iframe
@@ -134,9 +138,10 @@ onMounted(async () => {
     </fieldset>
   </div>
   <div
-    class="pt-12 pb-48 flex flex-col px-4 gap-4 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
+    class="pt-12 pb-48 flex flex-col px-4 lg:gap-4 gap-2 lg:grid lg:grid-cols-3 lg:w-[100ch] lg:mx-auto relative"
+    style="grid-template-columns: 1fr auto 1fr"
   >
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 col-span-1">
       <div class="flex flex-col gap-1">
         <div class="gap-1 flex flex-row playfair text-2xl">
           <a
@@ -146,33 +151,26 @@ onMounted(async () => {
           >
         </div>
         <div class="flex flex-row gap-2 playfair px-2">
-          <span class="text-stone-500 italic">verb gerund</span>
-          <span class="text-stone-500">/rəˈmärkˈiNG/</span>
+          <span class="text-stone-400 italic">verb gerund</span>
+          <span class="text-stone-400">/rəˈmärkˈiNG/</span>
         </div>
       </div>
       <ol class="list-decimal px-2">
-        <li class="text-2xl leading-9 playfair text-zinc-300">
-          say something as a comment
-        </li>
-        <li class="text-2xl leading-9 playfair text-zinc-300">
-          regard with attention
-        </li>
         <li class="text-2xl leading-9 playfair">
-          Write with markwhen: Each entry becomes a tweet-like remark
+          Writing with markwhen: Each entry becomes a tweet-like remark
         </li>
       </ol>
     </div>
-    <div class="col-span-1 flex-col hidden lg:flex"></div>
-    <div class="col-span-1 flex flex-col">
+    <div class="row-start-2 col-span-1 flex flex-col">
       <fieldset
-        class="border border-zinc-400 rounded-sm flex grow flex-col gap-2 bg-zinc-100"
+        class="border border-zinc-400 rounded-sm flex grow flex-col gap-2"
       >
-        <legend class="px-1 mx-1 playfair inline-table">
+        <legend class="px-1 mx-1 playfair inline-table bg-transparent">
           <a
             href="https://meridiem.markwhen.com/bella/recipes.mw"
-            class="decoration-dotted"
+            class="no-underline"
           >
-            <span class="text-zinc-400 bg-zinc-100">meridiem.markwhen.com/</span
+            <span class="text-stone-400">meridiem.markwhen.com/</span
             >bella/recipes.mw
           </a>
         </legend>
@@ -184,23 +182,58 @@ onMounted(async () => {
         </div>
       </fieldset>
     </div>
-    <div class="col-span-1 flex flex-col">
-      <fieldset
-        class="border border-zinc-400 rounded-sm flex flex-col gap-2 bg-zinc-100"
+    <div
+      class="flex flex-row items-center justify-center text-zinc-400 row-start-2 col-span-1"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-4 w-4 lg:hidden block"
       >
-        <legend class="px-1 mx-1 playfair bg-zinc-100 inline-table">
-          <a href="https://remark.ing/bella/recipes" class="decoration-dotted">
-            <span class="text-zinc-400">remark.ing/</span>bella/recipes</a
+        <path d="M12 5v14"></path>
+        <path d="m19 12-7 7-7-7"></path>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lg:block h-4 w-4 hidden"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </div>
+    <div class="row-start-2 col-span-1 flex flex-col">
+      <fieldset class="border border-zinc-400 rounded-sm flex flex-col gap-2">
+        <legend class="px-1 mx-1 playfair bg-transparent inline-table">
+          <a href="https://remark.ing/bella/recipes" class="no-underline">
+            <span class="text-stone-400">remark.ing/</span>bella/recipes</a
           >
         </legend>
         <blockquote data-remarking-uri="/bella/recipes"></blockquote>
       </fieldset>
     </div>
-    <div class="col-span-2">
+    <div class="col-span-3 row-start-3">
       <a
         href="https://remark.ing"
-        class="playfair decoration-dotted flex flex-row items-center gap-1"
-        >Sign in with Meridiem to get started
+        class="playfair flex flex-row items-center gap-1"
+        ><span
+          class="px-2 bg-stone-700 text-stone-100 rounded shadow transition hover:shadow-lg"
+          >Sign in with Meridiem to get started</span
+        >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
