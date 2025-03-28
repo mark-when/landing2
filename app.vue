@@ -134,7 +134,7 @@ onMounted(async () => {
     </fieldset>
   </div>
   <div
-    class="pt-12 pb-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
+    class="pt-12 pb-48 flex flex-col px-4 gap-4 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
   >
     <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
       <div class="flex flex-col gap-1">
