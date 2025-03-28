@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
+import Links from "./src/Links.vue";
 
 const latestBinaryVersion = ref("0.2.2");
 onMounted(async () => {
-  const res = await fetch(
-    "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json"
-  );
-  const json = await res.json();
-  latestBinaryVersion.value = json.currentRelease;
+  try {
+    const res = await fetch(
+      "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json"
+    );
+    const json = await res.json();
+    latestBinaryVersion.value = json.currentRelease;
+  } catch (e) {
+    console.error(e);
+  }
 });
 </script>
 <template>
@@ -77,7 +82,7 @@ onMounted(async () => {
         <li class="">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
-          A markwhen editor that supports
+          Markwhen editor that supports
           <highlight class="bg-cyan-200">collaborative editing</highlight>,
           <highlight class="bg-red-200">custom commands</highlight>,
           <highlight class="bg-lime-200">snippets</highlight>,
@@ -110,11 +115,11 @@ onMounted(async () => {
       </a>
     </div>
   </div>
-  <div class="px-4 pb-24 pt-2 w-full">
+  <div class="px-4 pb-24 pt-2 w-full flex flex-col">
     <fieldset
       class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200 shadow-lg"
     >
-      <legend class="mx-3 px-1 playfair">Meridiem Editor</legend>
+      <legend class="mx-3 px-1 playfair inline-table">Meridiem Editor</legend>
       <a
         href="https://meridiem.markwhen.com"
         target="_blank"
@@ -129,253 +134,91 @@ onMounted(async () => {
     </fieldset>
   </div>
   <div
-    class="flex flex-col items-start gap-2 pb-48 px-4 lg:w-[100ch] lg:mx-auto playfair overflow-scroll"
+    class="pt-12 pb-48 flex flex-col px-4 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
   >
-    <div class="flex flex-col">
-      <a href="https://docs.markwhen.com/" class="underline mb-2"
-        >Documentation</a
-      >
-      <a href="https://meridiem.markwhen.com/example">Example</a>
-      <a href="https://meridiem.markwhen.com">Meridiem</a>
-      <a
-        href="https://marketplace.visualstudio.com/items?itemName=Markwhen.markwhen"
-        >VS Code extension</a
-      >
-      <a href="https://obsidian.md/plugins?id=markwhen">Obsidian plugin</a>
-      <a href="https://discord.com/invite/3rTpUD94ac">Discord</a>
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
+      <div class="flex flex-col gap-1">
+        <div class="gap-1 flex flex-row playfair text-2xl">
+          <a
+            class="font-bold z-10 bg-zinc-100 px-2 decoration-dotted"
+            href="https://remark.ing"
+            >Remark.ing</a
+          >
+        </div>
+        <div class="flex flex-row gap-2 playfair px-2">
+          <span class="text-stone-500 italic">verb gerund</span>
+          <span class="text-stone-500">/rəˈmärkˈiNG/</span>
+        </div>
+      </div>
+      <ol class="list-decimal px-2">
+        <li class="text-2xl leading-9 playfair text-zinc-300">
+          say something as a comment
+        </li>
+        <li class="text-2xl leading-9 playfair text-zinc-300">
+          regard with attention
+        </li>
+        <li class="text-2xl leading-9 playfair">
+          Write with markwhen: Each entry becomes a tweet-like remark
+        </li>
+      </ol>
     </div>
-
-    <div class="flex flex-col">
-      <a href="https://github.com/mark-when">Github</a>
-      <table>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/landing2">This website</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/landing2"
-              >mark-when/landing2</a
-            >
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=landing2&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/markwhen"
-              >General issue tracking</a
-            >
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/markwhen"
-              >mark-when/markwhen</a
-            >
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=markwhen&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/obsidian-plugin"
-              >Obsidian Plugin</a
-            >
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/obsidian-plugin"
-              >mark-when/obsidian-plugin</a
-            >
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=obsidian-plugin&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/mw">Markwhen CLI</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/mw">mark-when/mw</a>
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=mw&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/timeline">Timeline</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/timeline"
-              >mark-when/timeline</a
-            >
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=timeline&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td><a href="https://github.com/mark-when/parser">Parser</a></td>
-          <td>
-            <a href="https://github.com/mark-when/parser">mark-when/parser</a>
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=parser&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/vscode">VS Code Extension</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/vscode">mark-when/vscode</a>
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=vscode&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/view-client"
-              >View client library</a
-            >
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/view-client"
-              >mark-when/view-client</a
-            >
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=view-client&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/calendar">Calendar</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/calendar"
-              >mark-when/calendar</a
-            >
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=calendar&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/c2">C2</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/c2">mark-when/c2</a>
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=c2&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/mark-when/resume">Resume</a>
-          </td>
-          <td>
-            <a href="https://github.com/mark-when/resume">mark-when/resume</a>
-          </td>
-          <td>
-            <iframe
-              src="https://ghbtns.com/github-btn.html?user=mark-when&repo=resume&type=star&count=true"
-              frameborder="0"
-              scrolling="0"
-              width="170"
-              height="20"
-              title="GitHub"
-            >
-            </iframe>
-          </td>
-        </tr>
-      </table>
+    <div class="col-span-1 flex-col hidden lg:flex"></div>
+    <div class="col-span-1 flex flex-col">
+      <fieldset
+        class="border border-zinc-400 rounded-sm flex grow flex-col gap-2 bg-zinc-100"
+      >
+        <legend class="px-1 mx-1 playfair inline-table">
+          <a
+            href="https://meridiem.markwhen.com/bella/recipes.mw"
+            class="decoration-dotted"
+          >
+            <span class="text-zinc-400 bg-zinc-100">meridiem.markwhen.com/</span
+            >bella/recipes.mw
+          </a>
+        </legend>
+        <div class="flex grow">
+          <iframe
+            class="w-full grow h-full min-h-48"
+            src="https://meridiem.markwhen.com/bella/recipes.mw"
+          ></iframe>
+        </div>
+      </fieldset>
+    </div>
+    <div class="col-span-1 flex flex-col">
+      <fieldset
+        class="border border-zinc-400 rounded-sm flex flex-col gap-2 bg-zinc-100"
+      >
+        <legend class="px-1 mx-1 playfair bg-zinc-100 inline-table">
+          <a href="https://remark.ing/bella/recipes" class="decoration-dotted">
+            <span class="text-zinc-400">remark.ing/</span>bella/recipes</a
+          >
+        </legend>
+        <blockquote data-remarking-uri="/bella/recipes"></blockquote>
+      </fieldset>
+    </div>
+    <div class="col-span-2">
+      <a
+        href="https://remark.ing"
+        class="playfair decoration-dotted flex flex-row items-center gap-1"
+        >Sign in with Meridiem to get started
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-3 w-3"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" /></svg
+      ></a>
     </div>
   </div>
+  <Links></Links>
 </template>
 
 <style>

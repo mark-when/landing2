@@ -54,7 +54,7 @@ leader: Jane Smith
 2025-09-09: Video call
 attendees: [sarah@example.com, igor@example.com]
 
-endGroup`
+endGroup`,
 });
 
 const exampleSelected = ref<string>("Basic Syntax");
@@ -103,7 +103,7 @@ watchEffect(() => {
     <fieldset
       class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2 bg-zinc-100"
     >
-      <legend class="playfair">
+      <legend class="playfair inline-table">
         <span class="px-1 mx-1">Markwhen input</span>
       </legend>
       <div class="flex flex-row gap-2 wrap flex-wrap">
@@ -143,7 +143,9 @@ watchEffect(() => {
     <fieldset
       class="border border-zinc-400 p-3 rounded-sm flex flex-col gap-2 bg-zinc-100"
     >
-      <legend class="px-1 mx-1 playfair bg-zinc-100">Output</legend>
+      <legend class="px-1 mx-1 playfair bg-zinc-100 inline-table">
+        Output
+      </legend>
       <div class="flex flex-row gap-2">
         <ExampleButton
           v-for="output in outputs"
