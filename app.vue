@@ -251,6 +251,71 @@ onMounted(async () => {
       ></a>
     </div>
   </div>
+  <div
+    class="pt-16 pb-8 flex flex-col px-2 gap-16 lg:grid lg:grid-cols-2 lg:w-[100ch] lg:mx-auto relative"
+  >
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 z-0">
+      <div class="flex flex-col gap-1 px-8 playfair">
+        <div class="gap-1 flex flex-row text-2xl">
+          <h1 class="font-bold">
+            <a
+              href="https://timeline.markwhen.com/markwhen/sponsorline"
+              class="decoration-dotted bg-zinc-100"
+              >Markwhen Sponsorline</a
+            >
+          </h1>
+        </div>
+        <div class="">
+          Like and use markwhen? Want it to get better for your use case?
+          <a href="https://github.com/sponsors/kochrt"
+            >Consider sponsoring the open source project.</a
+          >
+        </div>
+        <ul class="list-disc">
+          <li>
+            Support the development of the Obsidian plugin, VS Code extension,
+            Meridiem, the timeline, and the parser
+          </li>
+          <li>
+            Get yourself added to the sponsorline (and add a message if you
+            want)
+          </li>
+          <li>
+            Help keep its creator from getting a job optimizing ad delivery or
+            something equally depressing
+          </li>
+        </ul>
+        <a
+          class="flex flex-row items-center gap-1"
+          href="https://github.com/sponsors/kochrt"
+          >Sponsor on GitHub<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-4 w-4"
+            data-v-inspector="app.vue:203:7"
+          >
+            <path d="M5 12h14" data-v-inspector="app.vue:215:9"></path>
+            <path
+              d="m12 5 7 7-7 7"
+              data-v-inspector="app.vue:216:9"
+            ></path></svg
+        ></a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full lg:w-[100ch] xl:w-2/3 px-4 mx-auto pb-36">
+    <iframe
+      src="https://timeline.markwhen.com/markwhen/sponsorline"
+      class="w-full h-[70ch] border border-stone-400 rounded-sm shadow-lg"
+    ></iframe>
+  </div>
   <Links></Links>
 </template>
 
