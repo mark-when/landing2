@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { parseContentEditable } from "./contentEditable";
 const model = defineModel<string>();
 const content = ref<HTMLDivElement>();
 onMounted(() => {
   content.value!.textContent = model.value || "";
 });
+
+const input = (e: Event) => {
+  const el = e.target as HTMLDivElement;
+  model.value = parseContentEditable(el.childNodes);
+};
 </script>
 
 <template>
@@ -11,7 +17,7 @@ onMounted(() => {
     ref="content"
     contenteditable="true"
     class="bg-zinc-50 rounded-s h-48 font-mono text-sm p-2 whitespace-pre-wrap"
-    @input="model = ($event.target as HTMLDivElement).textContent || ''"
+    @input="input"
   ></div>
 </template>
 
