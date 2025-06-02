@@ -3,7 +3,7 @@ import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
 import Links from "./src/Links.vue";
 
-const latestBinaryVersion = ref("0.2.2");
+const latestBinaryVersion = ref("0.2.5");
 onMounted(async () => {
   try {
     const res = await fetch(
@@ -22,19 +22,29 @@ onMounted(async () => {
   >
     <div
       class="hidden lg:block absolute top-36 w-3/4 border-animated -left-24 h-1/2 rounded pointer-events-none"
-    ></div>
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4">
+    >
+      <div class="absolute bottom-0 left-28 right-0 flex items-center"></div>
+    </div>
+    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 playfair">
       <div class="flex flex-col gap-1">
-        <div class="gap-1 flex flex-row playfair text-2xl">
+        <div class="gap-1 flex flex-row text-2xl">
           <h1 class="font-bold z-10 bg-zinc-100 px-2">Markwhen</h1>
         </div>
-        <div class="flex flex-row gap-2 playfair px-2">
+        <div class="flex flex-row gap-2 px-2">
           <span class="text-stone-400 italic">noun</span>
           <span class="text-stone-400">/mɑrk·wɛn/</span>
         </div>
+        <div class="flex flex-row gap-2 px-2">
+          <span class="text-stone-400">see also: </span>
+          <a
+            class="text-stone-500 flex items-center gap-1 decoration-dotted"
+            href="https://docs.markwhen.com"
+            >markwhen documentation
+          </a>
+        </div>
       </div>
       <ol class="list-decimal px-2">
-        <li class="text-2xl leading-9 playfair">
+        <li class="text-2xl leading-9">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
           A markdown-like <em>journal language</em> for plainly writing
@@ -63,8 +73,8 @@ onMounted(async () => {
       class="hidden lg:block absolute top-0 border-animated-2 -left-full right-[14rem] h-[7.25rem] rounded pointer-events-none"
     ></div>
     <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 z-0">
-      <div class="flex flex-col gap-1 px-2">
-        <div class="gap-1 flex flex-row playfair text-2xl">
+      <div class="flex flex-col gap-1 px-2 playfair">
+        <div class="gap-1 flex flex-row text-2xl">
           <h1 class="font-bold">
             <a
               href="https://meridiem.markwhen.com"
@@ -73,9 +83,17 @@ onMounted(async () => {
             >
           </h1>
         </div>
-        <div class="flex flex-row gap-2 playfair px-2">
+        <div class="flex flex-row gap-2 px-2">
           <span class="text-stone-400 italic">noun</span>
           <span class="text-stone-400">/mə·ˈri·dē·əm/</span>
+        </div>
+        <div class="flex flex-row gap-2 px-2">
+          <span class="text-stone-400">see also: </span>
+          <a
+            class="text-stone-500 flex items-center gap-1 decoration-dotted"
+            href="https://docs.markwhen.com/meridiem"
+            >meridiem documentation
+          </a>
         </div>
       </div>
       <ol class="list-decimal text-2xl leading-9 playfair px-4">
@@ -142,17 +160,25 @@ onMounted(async () => {
     style="grid-template-columns: 1fr auto 1fr"
   >
     <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 col-span-1">
-      <div class="flex flex-col gap-1">
-        <div class="gap-1 flex flex-row playfair text-2xl">
+      <div class="flex flex-col gap-1 playfair">
+        <div class="gap-1 flex flex-row text-2xl">
           <a
             class="font-bold z-10 bg-zinc-100 px-2 decoration-dotted"
             href="https://remark.ing"
             >Remark.ing</a
           >
         </div>
-        <div class="flex flex-row gap-2 playfair px-2">
+        <div class="flex flex-row gap-2 px-2">
           <span class="text-stone-400 italic">verb gerund</span>
           <span class="text-stone-400">/rəˈmärkˈiNG/</span>
+        </div>
+        <div class="flex flex-row gap-2 px-2">
+          <span class="text-stone-400">see also: </span>
+          <a
+            class="text-stone-500 flex items-center gap-1 decoration-dotted"
+            href="https://docs.markwhen.com/remarking"
+            >remarking documentation
+          </a>
         </div>
       </div>
       <ol class="list-decimal px-2">
