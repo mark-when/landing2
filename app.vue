@@ -8,7 +8,7 @@ const updatedDate = ref("2026-01-04");
 onMounted(async () => {
   try {
     const res = await fetch(
-      "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json"
+      "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json",
     );
     const json = await res.json();
     latestBinaryVersion.value = json.currentRelease;
@@ -79,7 +79,7 @@ onMounted(async () => {
     <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 z-0">
       <div class="flex flex-col gap-1 px-2 playfair">
         <div class="gap-1 flex flex-row text-2xl">
-          <h1 class="font-bold">
+          <h1 class="font-bold" id="meridiem">
             <a
               href="https://meridiem.markwhen.com"
               class="decoration-dotted px-2 bg-zinc-100"
@@ -104,7 +104,7 @@ onMounted(async () => {
         <li class="">
           <!-- <span class="merriweather">Markwhen</span> -->
           <!-- <span class="sourceSerif">Markwhen</span> -->
-          Markwhen editor that supports
+          A markwhen and markdown editor that supports
           <highlight class="bg-cyan-200">collaborative editing</highlight>,
           <highlight class="bg-red-200">custom commands</highlight>,
           <highlight class="bg-lime-200">snippets</highlight>,
@@ -200,17 +200,17 @@ onMounted(async () => {
       >
         <legend class="px-1 mx-1 playfair inline-table bg-transparent">
           <a
-            href="https://meridiem.markwhen.com/bella/recipes.mw"
+            href="https://meridiem.markwhen.com/bella/recipes.raw"
             class="no-underline"
           >
             <span class="text-stone-400">meridiem.markwhen.com/</span
-            >bella/recipes.mw
+            >bella/recipes.raw
           </a>
         </legend>
         <div class="flex grow">
           <iframe
             class="w-full grow h-full min-h-48"
-            src="https://meridiem.markwhen.com/bella/recipes.mw"
+            src="https://meridiem.markwhen.com/bella/recipes.raw"
           ></iframe>
         </div>
       </fieldset>
@@ -298,46 +298,80 @@ a {
   @apply underline;
 }
 .worksans {
-  font-family: Work Sans, sans-serif;
+  font-family:
+    Work Sans,
+    sans-serif;
 }
 .playfair {
-  font-family: Playfair Display, serif;
+  font-family:
+    Playfair Display,
+    serif;
 }
 
 .border-animated {
-  background: linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
+  background:
+    linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
     linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
     linear-gradient(0deg, #c1c1c8 50%, transparent 50%),
     linear-gradient(0deg, #c1c1c8 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-  background-size: 24px 1px, 24px 1px, 1px 24px, 0px 24px;
-  background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
+  background-size:
+    24px 1px,
+    24px 1px,
+    1px 24px,
+    0px 24px;
+  background-position:
+    0% 0%,
+    100% 100%,
+    0% 100%,
+    100% 0px;
   animation: dash 30s linear infinite;
 }
 
 @keyframes dash {
   from {
-    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+    background-position:
+      100% 0%,
+      0% 100%,
+      0% 0%,
+      100% 100%;
   }
   to {
-    background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+    background-position:
+      0% 0%,
+      100% 100%,
+      0% 100%,
+      100% 0%;
   }
 }
 
 .border-animated-2 {
-  background: linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
+  background:
+    linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
     linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
     linear-gradient(0deg, #c1c1c8 50%, transparent 50%),
     linear-gradient(0deg, #c1c1c8 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-  background-size: 24px 0px, 24px 1px, 0px 24px, 1px 24px;
-  background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
+  background-size:
+    24px 0px,
+    24px 1px,
+    0px 24px,
+    1px 24px;
+  background-position:
+    0% 0%,
+    100% 100%,
+    0% 100%,
+    100% 0px;
   animation: dash-reverse 60s linear infinite;
 }
 
 @keyframes dash-reverse {
   to {
-    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+    background-position:
+      100% 0%,
+      0% 100%,
+      0% 0%,
+      100% 100%;
   }
 }
 </style>
