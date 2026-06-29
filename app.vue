@@ -3,20 +3,188 @@ import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
 import Links from "./src/Links.vue";
 
-const latestBinaryVersion = ref("0.2.15");
-const updatedDate = ref("2026-01-04");
+type DownloadId = "macosArm64" | "windowsX64" | "windowsArm64";
+
+type Download = {
+  id: DownloadId;
+  label: string;
+  version: string;
+  updatedDate?: string;
+  url: string;
+};
+
+const detectedOs = useDetectedOs();
+const meridiemBaseUrl =
+  "https://storage.googleapis.com/markwhen_binaries/Meridiem";
+
+const downloads = reactive<Record<DownloadId, Download>>({
+  macosArm64: {
+    id: "macosArm64",
+    label: "macOS (arm64)",
+    version: "0.2.15",
+    updatedDate: "2026-01-04",
+    url: `${meridiemBaseUrl}/darwin/arm64/Meridiem-darwin-arm64-0.2.15.zip`,
+  },
+  windowsX64: {
+    id: "windowsX64",
+    label: "Windows (x64)",
+    version: "1.0.11",
+    url: `${meridiemBaseUrl}/win32/x64/Meridiem-1.0.11 Setup.exe`,
+  },
+  windowsArm64: {
+    id: "windowsArm64",
+    label: "Windows (arm64)",
+    version: "1.0.11",
+    url: `${meridiemBaseUrl}/win32/arm64/Meridiem-1.0.11 Setup.exe`,
+  },
+});
+
+const downloadCandidates: DownloadId[] = [
+  "macosArm64",
+  "windowsArm64",
+  "windowsX64",
+];
+const availableDownloadIds = ref<DownloadId[]>([]);
+
+const downloadIdForDetectedOs = (): DownloadId => {
+  if (detectedOs.value === "windows") {
+    return "windowsX64";
+  }
+
+  return "macosArm64";
+};
+
+const availableDownloadIdForDetectedOs = () => {
+  const detectedDownloadId = downloadIdForDetectedOs();
+
+  return availableDownloadIds.value.includes(detectedDownloadId)
+    ? detectedDownloadId
+    : availableDownloadIds.value[0];
+};
+
+const selectedDownloadId = ref<DownloadId>();
+const hasSelectedDownload = ref(false);
+
+const compareVersions = (a: string, b: string) => {
+  const aParts = a.split(".").map((part) => Number.parseInt(part, 10) || 0);
+  const bParts = b.split(".").map((part) => Number.parseInt(part, 10) || 0);
+  const maxLength = Math.max(aParts.length, bParts.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    const diff = (aParts[i] ?? 0) - (bParts[i] ?? 0);
+    if (diff !== 0) {
+      return diff;
+    }
+  }
+
+  return 0;
+};
+
+const latestSquirrelVersion = (releasesText: string) =>
+  releasesText
+    .replace(/^\uFEFF/, "")
+    .split("\n")
+    .map((line) => line.match(/Meridiem-([0-9]+(?:\.[0-9]+)+)-full\.nupkg/i))
+    .filter((match): match is RegExpMatchArray => !!match?.[1])
+    .map((match) => match[1])
+    .sort(compareVersions)
+    .at(-1);
+
+const headerDate = (value: string | null) => {
+  if (!value) {
+    return;
+  }
+
+  const date = new Date(value);
+
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10);
+};
+
+const loadMacVersion = async (): Promise<DownloadId> => {
+  const res = await fetch(`${meridiemBaseUrl}/darwin/arm64/RELEASES.json`);
+  const json = await res.json();
+  const latestVersion = json.currentRelease as string;
+  const release = json.releases?.find(
+    (release: { version?: string }) => release.version === latestVersion,
+  );
+
+  downloads.macosArm64.version = latestVersion;
+  downloads.macosArm64.updatedDate =
+    release?.updateTo?.pub_date?.substring(0, 10) ??
+    downloads.macosArm64.updatedDate;
+  downloads.macosArm64.url =
+    release?.updateTo?.url ??
+    `${meridiemBaseUrl}/darwin/arm64/Meridiem-darwin-arm64-${latestVersion}.zip`;
+
+  return "macosArm64";
+};
+
+const loadWindowsVersion = async (
+  id: Extract<DownloadId, "windowsX64" | "windowsArm64">,
+  arch: "x64" | "arm64",
+): Promise<DownloadId> => {
+  const res = await fetch(`${meridiemBaseUrl}/win32/${arch}/RELEASES`);
+  if (!res.ok) {
+    throw new Error(`Unable to load Windows releases for win32/${arch}`);
+  }
+
+  const releasesText = new TextDecoder("utf-8").decode(
+    await res.arrayBuffer(),
+  );
+  const latestVersion = latestSquirrelVersion(releasesText);
+
+  if (!latestVersion) {
+    throw new Error(`No Meridiem release found for win32/${arch}`);
+  }
+
+  downloads[id].version = latestVersion;
+  downloads[id].updatedDate = headerDate(res.headers.get("last-modified"));
+  downloads[id].url =
+    `${meridiemBaseUrl}/win32/${arch}/Meridiem-${latestVersion} Setup.exe`;
+
+  return id;
+};
+
+const availableDownloads = computed(() =>
+  availableDownloadIds.value.map((id) => downloads[id]),
+);
+const selectedDownload = computed(() =>
+  selectedDownloadId.value ? downloads[selectedDownloadId.value] : undefined,
+);
+
+watch(detectedOs, () => {
+  if (!hasSelectedDownload.value) {
+    selectedDownloadId.value = availableDownloadIdForDetectedOs();
+  }
+});
+
 onMounted(async () => {
-  try {
-    const res = await fetch(
-      "https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/RELEASES.json",
-    );
-    const json = await res.json();
-    latestBinaryVersion.value = json.currentRelease;
-    updatedDate.value = json.releases
-      .find((r) => r.version === latestBinaryVersion.value)
-      ?.updateTo?.pub_date.substring(0, 10);
-  } catch (e) {
-    console.error(e);
+  const releaseResults = await Promise.allSettled([
+    loadMacVersion(),
+    loadWindowsVersion("windowsX64", "x64"),
+    loadWindowsVersion("windowsArm64", "arm64"),
+  ]);
+
+  const loadedIds = new Set(
+    releaseResults
+      .filter(
+        (result): result is PromiseFulfilledResult<DownloadId> =>
+          result.status === "fulfilled",
+      )
+      .map((result) => result.value),
+  );
+
+  availableDownloadIds.value = downloadCandidates.filter((id) =>
+    loadedIds.has(id),
+  );
+
+  if (!hasSelectedDownload.value) {
+    selectedDownloadId.value = availableDownloadIdForDetectedOs();
+  } else if (
+    selectedDownloadId.value &&
+    !availableDownloadIds.value.includes(selectedDownloadId.value)
+  ) {
+    selectedDownloadId.value = availableDownloadIds.value[0];
   }
 });
 </script>
@@ -120,10 +288,25 @@ onMounted(async () => {
         </li>
       </ol>
     </div>
-    <div class="flex flex-row items-end gap-2 px-8">
+    <div class="flex flex-col items-start justify-end gap-3 px-8">
+      <select
+        v-if="availableDownloads.length > 1"
+        v-model="selectedDownloadId"
+        class="rounded bg-transparent hover:bg-white"
+        @change="hasSelectedDownload = true"
+      >
+        <option
+          v-for="download in availableDownloads"
+          :key="download.id"
+          :value="download.id"
+        >
+          {{ download.label }}
+        </option>
+      </select>
       <a
+        v-if="selectedDownload"
         class="flex flex-row gap-4 items-center group no-underline"
-        :href="`https://storage.googleapis.com/markwhen_binaries/Meridiem/darwin/arm64/Meridiem-darwin-arm64-${latestBinaryVersion}.zip`"
+        :href="selectedDownload.url"
       >
         <img
           src="https://meridiem.markwhen.com/logo-electron.svg"
@@ -131,10 +314,12 @@ onMounted(async () => {
           class="h-12 w-12 rounded-xl shadow group-hover:shadow-lg transition"
         />
         <div class="flex flex-col">
-          <span class=""> Download (macOS arm64 beta) </span>
+          <span class=""> Download </span>
           <div class="flex flex-row text-sm text-zinc-400 gap-4">
-            <span>v{{ latestBinaryVersion }}</span>
-            <span>{{ updatedDate }}</span>
+            <span>v{{ selectedDownload.version }}</span>
+            <span v-if="selectedDownload.updatedDate">{{
+              selectedDownload.updatedDate
+            }}</span>
           </div>
         </div>
       </a>
@@ -142,19 +327,8 @@ onMounted(async () => {
   </div>
   <div class="px-4 pb-24 pt-2 w-full flex flex-col">
     <fieldset
-      class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto rounded-sm group border border-stone-400 bg-zinc-200 shadow-lg"
+      class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto group shadow-lg"
     >
-      <legend
-        class="mx-3 px-1 playfair inline-table text-white rounded bg-green-900 shadow-lg"
-      >
-        Meridiem Editor
-      </legend>
-      <a
-        href="https://meridiem.markwhen.com"
-        target="_blank"
-        class="flex flex-col px-4 py-px mb-1 mx-auto rounded-sm decoration-dotted text-stone-900"
-        >Open in new tab ->
-      </a>
       <iframe
         src="https://meridiem.markwhen.com"
         height="650"
