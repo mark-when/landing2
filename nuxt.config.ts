@@ -28,14 +28,19 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss"],
+
   devServer: {
     port: 3001,
   },
+
   tailwindcss: {
     config: {
       content: ["./src/**/*.vue"],
     },
   },
+
+  compatibilityDate: "2026-06-29",
 });
