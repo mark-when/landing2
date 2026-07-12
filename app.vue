@@ -21,9 +21,9 @@ const downloads = reactive<Record<DownloadId, Download>>({
   macosArm64: {
     id: "macosArm64",
     label: "macOS (arm64)",
-    version: "0.2.15",
-    updatedDate: "2026-01-04",
-    url: `${meridiemBaseUrl}/darwin/arm64/Meridiem-darwin-arm64-0.2.15.zip`,
+    version: "1.0.19",
+    updatedDate: "2026-07-12",
+    url: `${meridiemBaseUrl}/darwin/arm64/Meridiem-darwin-arm64-1.0.19.zip`,
   },
   windowsX64: {
     id: "windowsX64",
