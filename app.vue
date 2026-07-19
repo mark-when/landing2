@@ -333,6 +333,8 @@ onMounted(async () => {
         src="https://meridiem.markwhen.com"
         height="650"
         width="100%"
+        loading="lazy"
+        title="Meridiem editor"
       ></iframe>
     </fieldset>
   </div>
