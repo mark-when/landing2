@@ -64,6 +64,7 @@ const availableDownloadIdForDetectedOs = () => {
 
 const selectedDownloadId = ref<DownloadId>();
 const hasSelectedDownload = ref(false);
+const recipesText = ref("Loading recipes…");
 
 const compareVersions = (a: string, b: string) => {
   const aParts = a.split(".").map((part) => Number.parseInt(part, 10) || 0);
@@ -159,6 +160,17 @@ watch(detectedOs, () => {
 });
 
 onMounted(async () => {
+  void fetch("https://meridiem.markwhen.com/bella/recipes.raw")
+    .then(async (res) => {
+      if (!res.ok) {
+        throw new Error(`Unable to load recipes (${res.status})`);
+      }
+      recipesText.value = await res.text();
+    })
+    .catch(() => {
+      recipesText.value = "Unable to load recipes.";
+    });
+
   const releaseResults = await Promise.allSettled([
     loadMacVersion(),
     loadWindowsVersion("windowsX64", "x64"),
@@ -383,12 +395,10 @@ onMounted(async () => {
             >bella/recipes.raw
           </a>
         </legend>
-        <div class="flex grow">
-          <iframe
-            class="w-full grow h-full min-h-48"
-            src="https://meridiem.markwhen.com/bella/recipes.raw"
-          ></iframe>
-        </div>
+        <pre
+          class="w-full grow h-full min-h-48 overflow-auto whitespace-pre-wrap p-2 font-mono text-xs"
+          aria-label="Bella's recipes"
+        >{{ recipesText }}</pre>
       </fieldset>
     </div>
     <div
