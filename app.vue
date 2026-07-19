@@ -2,6 +2,8 @@
 import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
 import Links from "./src/Links.vue";
+import Logo from "./logo.vue";
+import PostMeridiemLogo from "./post-meridiem-logo.vue";
 
 type DownloadId = "macosArm64" | "windowsX64" | "windowsArm64";
 
@@ -98,7 +100,9 @@ const headerDate = (value: string | null) => {
 
   const date = new Date(value);
 
-  return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10);
+  return Number.isNaN(date.getTime())
+    ? undefined
+    : date.toISOString().slice(0, 10);
 };
 
 const loadMacVersion = async (): Promise<DownloadId> => {
@@ -129,9 +133,7 @@ const loadWindowsVersion = async (
     throw new Error(`Unable to load Windows releases for win32/${arch}`);
   }
 
-  const releasesText = new TextDecoder("utf-8").decode(
-    await res.arrayBuffer(),
-  );
+  const releasesText = new TextDecoder("utf-8").decode(await res.arrayBuffer());
   const latestVersion = latestSquirrelVersion(releasesText);
 
   if (!latestVersion) {
@@ -320,11 +322,17 @@ onMounted(async () => {
         class="flex flex-row gap-4 items-center group no-underline"
         :href="selectedDownload.url"
       >
-        <img
-          src="https://meridiem.markwhen.com/logo-electron.svg"
-          alt=""
-          class="h-12 w-12 rounded-xl shadow group-hover:shadow-lg transition"
-        />
+        <span class="relative h-12 w-12 shrink-0 self-start">
+          <Logo
+            class="bg-white absolute inset-0 h-12 w-12 rounded-xl shadow transition group-hover:shadow-lg"
+          ></Logo>
+          <span class="absolute left-0 top-0 block h-[calc(650px+3rem)] w-12">
+            <Logo
+              id="movingLogo"
+              class="sticky top-[calc(50vh-1.5rem)] -z-10 block h-12 w-12 rounded-xl transition"
+            ></Logo>
+          </span>
+        </span>
         <div class="flex flex-col">
           <span class=""> Download </span>
           <div class="flex flex-row text-sm text-zinc-400 gap-4">
@@ -337,9 +345,18 @@ onMounted(async () => {
       </a>
     </div>
   </div>
-  <div class="px-4 pb-24 pt-2 w-full flex flex-col">
+  <div class="relative">
+    <div
+      class="pointer-events-none absolute inset-y-2 left-1/4 z-40 w-16 -translate-x-1/2"
+    >
+      <PostMeridiemLogo
+        id="iframeLogo"
+        class="sticky top-[calc(20vh-2rem)] block h-12 w-12 z-30"
+      ></PostMeridiemLogo>
+    </div>
+  <div class="relative z-50 px-4 pb-24 pt-2 w-full flex flex-col">
     <fieldset
-      class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto group shadow-lg"
+      class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto group shadow-lg rounded-lg"
     >
       <iframe
         src="https://meridiem.markwhen.com"
@@ -347,11 +364,12 @@ onMounted(async () => {
         width="100%"
         loading="lazy"
         title="Meridiem editor"
+        class="rounded-lg"
       ></iframe>
     </fieldset>
   </div>
   <div
-    class="pt-12 pb-48 flex flex-col px-4 lg:gap-4 gap-2 lg:grid lg:grid-cols-3 lg:w-[100ch] lg:mx-auto relative"
+    class="pt-12 pb-48 flex flex-col px-4 lg:gap-4 gap-2 lg:grid lg:grid-cols-3 lg:w-[100ch] lg:mx-auto"
     style="grid-template-columns: 1fr auto 1fr"
   >
     <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 col-span-1">
@@ -398,7 +416,8 @@ onMounted(async () => {
         <pre
           class="w-full grow h-full min-h-48 overflow-auto whitespace-pre-wrap p-2 font-mono text-xs"
           aria-label="Bella's recipes"
-        >{{ recipesText }}</pre>
+          >{{ recipesText }}</pre
+        >
       </fieldset>
     </div>
     <div
@@ -471,9 +490,126 @@ onMounted(async () => {
     </div>
   </div>
   <Links></Links>
+  <div class="relative h-[9000px] w-screen">
+    <div class="pointer-events-none absolute inset-0 z-30">
+      <div class="sticky top-0 h-dvh overflow-hidden">
+        <div class="dusk-shade absolute inset-0" />
+        <div class="scroll-glow absolute inset-x-0 bottom-0 z-0 h-screen" />
+      </div>
+    </div>
+  </div>
+  </div>
 </template>
 
 <style>
+.scroll-glow {
+  color: rgb(255, 224, 196);
+  opacity: 0.03;
+  background:
+    radial-gradient(ellipse 90% 65% at 50% 100%, currentColor, transparent 72%),
+    linear-gradient(to top, currentColor, transparent 82%);
+  animation: deepen-glow auto linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0% 100%;
+}
+
+.dusk-shade {
+  background: rgb(20, 8, 34);
+  opacity: 0;
+  animation: darken-page auto linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0% 100%;
+}
+
+@property --pm-left-start {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #96b4af00;
+}
+
+@property --pm-left-end {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8cad9e00;
+}
+
+@property --pm-middle-start {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #67896900;
+}
+
+@property --pm-middle-end {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #2e4f3500;
+}
+
+@property --pm-right-start {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #3a5c4100;
+}
+
+@property --pm-right-end {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1d3a2300;
+}
+
+#iframeLogo {
+  animation: iframe-logo-colors auto linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0% 100%;
+}
+
+@keyframes iframe-logo-colors {
+  to {
+    --pm-left-start: #d1e1d4;
+    --pm-left-end: #91a79f;
+    --pm-middle-start: #f4c680;
+    --pm-middle-end: #e8a36e;
+    --pm-right-start: #f28f88;
+    --pm-right-end: #a25d70;
+  }
+}
+
+@keyframes darken-page {
+  0%,
+  35% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes deepen-glow {
+  0% {
+    color: rgb(255, 224, 196);
+    opacity: 0.03;
+  }
+
+  38% {
+    color: rgb(249, 115, 22);
+    opacity: 0.18;
+  }
+
+  68% {
+    color: rgb(220, 38, 75);
+    opacity: 0.42;
+  }
+
+  100% {
+    color: rgb(58, 10, 88);
+    opacity: 0.78;
+  }
+}
 td {
   @apply pr-8;
 }
