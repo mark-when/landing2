@@ -347,7 +347,7 @@ onMounted(async () => {
   </div>
   <div class="relative">
     <div
-      class="pointer-events-none absolute inset-y-2 left-1/4 z-40 w-16 -translate-x-1/2"
+      class="pointer-events-none absolute inset-y-2 left-10 lg:left-[calc(50%-50ch+1.5rem)] z-40 w-16"
     >
       <PostMeridiemLogo
         id="iframeLogo"
@@ -524,37 +524,37 @@ onMounted(async () => {
 @property --pm-left-start {
   syntax: "<color>";
   inherits: true;
-  initial-value: #96b4af00;
+  initial-value: #96b4af;
 }
 
 @property --pm-left-end {
   syntax: "<color>";
   inherits: true;
-  initial-value: #8cad9e00;
+  initial-value: #8cad9e;
 }
 
 @property --pm-middle-start {
   syntax: "<color>";
   inherits: true;
-  initial-value: #67896900;
+  initial-value: #678969;
 }
 
 @property --pm-middle-end {
   syntax: "<color>";
   inherits: true;
-  initial-value: #2e4f3500;
+  initial-value: #2e4f35;
 }
 
 @property --pm-right-start {
   syntax: "<color>";
   inherits: true;
-  initial-value: #3a5c4100;
+  initial-value: #3a5c41;
 }
 
 @property --pm-right-end {
   syntax: "<color>";
   inherits: true;
-  initial-value: #1d3a2300;
+  initial-value: #1d3a23;
 }
 
 #iframeLogo {
@@ -564,7 +564,17 @@ onMounted(async () => {
 }
 
 @keyframes iframe-logo-colors {
-  to {
+  0%,
+  20% {
+    opacity: 0.05;
+  }
+
+  45% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 1;
     --pm-left-start: #d1e1d4;
     --pm-left-end: #91a79f;
     --pm-middle-start: #f4c680;
