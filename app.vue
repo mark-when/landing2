@@ -3,7 +3,23 @@ import Highlight from "./src/Highlight.vue";
 import Examples from "./src/Examples.vue";
 import Links from "./src/Links.vue";
 import Logo from "./logo.vue";
+import NightSky from "./NightSky.vue";
 import PostMeridiemLogo from "./post-meridiem-logo.vue";
+
+useHead({
+  link: [
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossorigin: "anonymous",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Pacifico&display=swap",
+    },
+  ],
+});
 
 type DownloadId = "macosArm64" | "windowsX64" | "windowsArm64";
 
@@ -324,12 +340,12 @@ onMounted(async () => {
       >
         <span class="relative h-12 w-12 shrink-0 self-start">
           <Logo
-            class="bg-white absolute inset-0 h-12 w-12 rounded-xl shadow transition group-hover:shadow-lg"
+            class="bg-white absolute inset-0 h-12 w-12 rounded-xl shadow transition group-hover:shadow-lg  z-10"
           ></Logo>
           <span class="absolute left-0 top-0 block h-[calc(650px+3rem)] w-12">
             <Logo
               id="movingLogo"
-              class="sticky top-[calc(50vh-1.5rem)] -z-10 block h-12 w-12 rounded-xl transition"
+              class="sticky top-[calc(50vh-1.5rem)] z-0 block h-12 w-12 rounded-xl transition"
             ></Logo>
           </span>
         </span>
@@ -347,131 +363,88 @@ onMounted(async () => {
   </div>
   <div class="relative">
     <div
-      class="pointer-events-none absolute inset-y-2 left-10 lg:left-[calc(50%-50ch+1.5rem)] z-40 w-16"
+      class="pointer-events-none absolute inset-y-2 left-10 lg:left-[calc(50%-50ch+1.5rem)] z-40 w-max"
     >
-      <PostMeridiemLogo
-        id="iframeLogo"
-        class="sticky top-[calc(20vh-2rem)] block h-12 w-12 z-30"
-      ></PostMeridiemLogo>
-    </div>
-  <div class="relative z-50 px-4 pb-24 pt-2 w-full flex flex-col">
-    <fieldset
-      class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto group shadow-lg rounded-lg"
-    >
-      <iframe
-        src="https://meridiem.markwhen.com"
-        height="650"
-        width="100%"
-        loading="lazy"
-        title="Meridiem editor"
-        class="rounded-lg"
-      ></iframe>
-    </fieldset>
-  </div>
-  <div
-    class="pt-12 pb-48 flex flex-col px-4 lg:gap-4 gap-2 lg:grid lg:grid-cols-3 lg:w-[100ch] lg:mx-auto"
-    style="grid-template-columns: 1fr auto 1fr"
-  >
-    <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 col-span-1">
-      <div class="flex flex-col gap-1 playfair">
-        <div class="gap-1 flex flex-row text-2xl">
-          <a
-            class="font-bold z-10 bg-zinc-100 px-2 decoration-dotted"
-            href="https://remark.ing"
-            >Remark.ing</a
-          >
-        </div>
-        <div class="flex flex-row gap-2 px-2">
-          <span class="text-stone-400 italic">verb gerund</span>
-          <span class="text-stone-400">/rəˈmärkˈiNG/</span>
-        </div>
-        <div class="flex flex-row gap-2 px-2">
-          <span class="text-stone-400">see also: </span>
-          <a
-            class="text-stone-500 flex items-center gap-1 decoration-dotted"
-            href="https://docs.markwhen.com/remarking"
-            >remarking documentation
-          </a>
-        </div>
-      </div>
-      <ol class="list-decimal px-2">
-        <li class="text-2xl leading-9 playfair">
-          Writing with markwhen: Each entry becomes a tweet-like remark
-        </li>
-      </ol>
-    </div>
-    <div class="row-start-2 col-span-1 flex flex-col">
-      <fieldset
-        class="border border-zinc-400 rounded-sm flex grow flex-col gap-2"
-      >
-        <legend class="px-1 mx-1 playfair inline-table bg-transparent">
-          <a
-            href="https://meridiem.markwhen.com/bella/recipes.raw"
-            class="no-underline"
-          >
-            <span class="text-stone-400">meridiem.markwhen.com/</span
-            >bella/recipes.raw
-          </a>
-        </legend>
-        <pre
-          class="w-full grow h-full min-h-48 overflow-auto whitespace-pre-wrap p-2 font-mono text-xs"
-          aria-label="Bella's recipes"
-          >{{ recipesText }}</pre
+      <div class="sticky top-[calc(20vh-2rem)] flex items-center gap-3">
+        <PostMeridiemLogo
+          id="iframeLogo"
+          class="block h-12 w-12 z-30"
+        ></PostMeridiemLogo>
+        <span
+          class="post-meridiem-wordmark whitespace-nowrap text-3xl font-semibold tracking-wide text-stone-100"
+          >Post Meridiem</span
         >
+      </div>
+    </div>
+    <div class="relative z-50 px-4 pb-24 pt-2 w-full flex flex-col">
+      <fieldset
+        class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto group shadow-lg rounded-b-xl"
+      >
+        <iframe
+          src="https://meridiem.markwhen.com"
+          height="650"
+          width="100%"
+          loading="lazy"
+          title="Meridiem editor"
+          class="rounded-b-xl"
+        ></iframe>
       </fieldset>
     </div>
     <div
-      class="flex flex-row items-center justify-center text-zinc-400 row-start-2 col-span-1"
+      class="pt-12 pb-48 flex flex-col px-4 lg:gap-4 gap-2 lg:grid lg:grid-cols-3 lg:w-[100ch] lg:mx-auto"
+      style="grid-template-columns: 1fr auto 1fr"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="h-4 w-4 lg:hidden block"
-      >
-        <path d="M12 5v14"></path>
-        <path d="m19 12-7 7-7-7"></path>
-      </svg>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lg:block h-4 w-4 hidden"
-      >
-        <path d="M5 12h14" />
-        <path d="m12 5 7 7-7 7" />
-      </svg>
-    </div>
-    <div class="row-start-2 col-span-1 flex flex-col">
-      <fieldset class="border border-zinc-400 rounded-sm flex flex-col gap-2">
-        <legend class="px-1 mx-1 playfair bg-transparent inline-table">
-          <a href="https://remark.ing/bella/recipes" class="no-underline">
-            <span class="text-stone-400">remark.ing/</span>bella/recipes</a
-          >
-        </legend>
-        <blockquote data-remarking-uri="/bella/recipes"></blockquote>
-      </fieldset>
-    </div>
-    <div class="col-span-3 row-start-3">
-      <a
-        href="https://remark.ing"
-        class="playfair flex flex-row items-center gap-1"
-        ><span
-          class="px-2 bg-stone-700 text-stone-100 rounded shadow transition hover:shadow-lg"
-          >Sign in with Meridiem to get started</span
+      <div class="flex flex-col lg:pt-8 gap-2 lg:px-0 px-4 col-span-1">
+        <div class="flex flex-col gap-1 playfair">
+          <div class="gap-1 flex flex-row text-2xl">
+            <a
+              class="font-bold z-10 bg-zinc-100 px-2 decoration-dotted"
+              href="https://remark.ing"
+              >Remark.ing</a
+            >
+          </div>
+          <div class="flex flex-row gap-2 px-2">
+            <span class="text-stone-400 italic">verb gerund</span>
+            <span class="text-stone-400">/rəˈmärkˈiNG/</span>
+          </div>
+          <div class="flex flex-row gap-2 px-2">
+            <span class="text-stone-400">see also: </span>
+            <a
+              class="text-stone-500 flex items-center gap-1 decoration-dotted"
+              href="https://docs.markwhen.com/remarking"
+              >remarking documentation
+            </a>
+          </div>
+        </div>
+        <ol class="list-decimal px-2">
+          <li class="text-2xl leading-9 playfair">
+            Writing with markwhen: Each entry becomes a tweet-like remark
+          </li>
+        </ol>
+      </div>
+      <div class="row-start-2 col-span-1 flex flex-col">
+        <fieldset
+          class="border border-zinc-400 rounded-sm flex grow flex-col gap-2"
         >
+          <legend class="px-1 mx-1 playfair inline-table bg-transparent">
+            <a
+              href="https://meridiem.markwhen.com/bella/recipes.raw"
+              class="no-underline"
+            >
+              <span class="text-stone-400">meridiem.markwhen.com/</span
+              >bella/recipes.raw
+            </a>
+          </legend>
+          <pre
+            class="w-full grow h-full min-h-48 overflow-auto whitespace-pre-wrap p-2 font-mono text-xs"
+            aria-label="Bella's recipes"
+            >{{ recipesText }}</pre
+          >
+        </fieldset>
+      </div>
+      <div
+        class="flex flex-row items-center justify-center text-zinc-400 row-start-2 col-span-1"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -482,22 +455,115 @@ onMounted(async () => {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="h-3 w-3"
+          class="h-4 w-4 lg:hidden block"
+        >
+          <path d="M12 5v14"></path>
+          <path d="m19 12-7 7-7-7"></path>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lg:block h-4 w-4 hidden"
         >
           <path d="M5 12h14" />
-          <path d="m12 5 7 7-7 7" /></svg
-      ></a>
-    </div>
-  </div>
-  <Links></Links>
-  <div class="relative h-[9000px] w-screen">
-    <div class="pointer-events-none absolute inset-0 z-30">
-      <div class="sticky top-0 h-dvh overflow-hidden">
-        <div class="dusk-shade absolute inset-0" />
-        <div class="scroll-glow absolute inset-x-0 bottom-0 z-0 h-screen" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </div>
+      <div class="row-start-2 col-span-1 flex flex-col">
+        <fieldset class="border border-zinc-400 rounded-sm flex flex-col gap-2">
+          <legend class="px-1 mx-1 playfair bg-transparent inline-table">
+            <a href="https://remark.ing/bella/recipes" class="no-underline">
+              <span class="text-stone-400">remark.ing/</span>bella/recipes</a
+            >
+          </legend>
+          <blockquote data-remarking-uri="/bella/recipes"></blockquote>
+        </fieldset>
+      </div>
+      <div class="col-span-3 row-start-3">
+        <a
+          href="https://remark.ing"
+          class="playfair flex flex-row items-center gap-1"
+          ><span
+            class="px-2 bg-stone-700 text-stone-100 rounded shadow transition hover:shadow-lg"
+            >Sign in with Meridiem to get started</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-3 w-3"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" /></svg
+        ></a>
       </div>
     </div>
-  </div>
+    <Links></Links>
+    <div
+      class="relative flex min-h-[9000px] w-screen flex-col justify-end px-4 pb-24"
+    >
+      <div class="pointer-events-none absolute inset-0 z-30">
+        <div class="sticky top-0 h-dvh overflow-hidden">
+          <div class="dusk-shade absolute inset-0" />
+          <div class="scroll-glow absolute inset-x-0 bottom-0 z-0 h-screen" />
+          <NightSky class="pointer-events-none absolute top-0 left-0 right-0 h-3/4 z-[1]" />
+        </div>
+      </div>
+      <section
+        class="relative z-50 mx-auto w-full max-w-[100ch] overflow-hidden rounded-3xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:p-12"
+      >
+        <div class="flex flex-col items-start justify-center gap-6">
+          <p class="font-mono text-xs uppercase tracking-[0.24em] text-orange-200">
+            A new way to write
+          </p>
+          <h2 class="font-serif text-4xl leading-tight text-stone-50 lg:text-6xl">
+            Make space for what happens after the plan.
+          </h2>
+          <p class="max-w-prose text-lg leading-8 text-stone-300">
+            Post Meridiem is a quieter place for notes, drafts, and the details
+            that emerge after the day has already begun.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="https://meridiem.markwhen.com"
+              class="rounded-full bg-orange-200 px-5 py-3 font-medium text-stone-900 no-underline transition hover:bg-orange-100"
+              >Explore Post Meridiem</a
+            >
+            <a
+              href="https://docs.markwhen.com/meridiem"
+              class="rounded-full border border-stone-400/60 px-5 py-3 font-medium text-stone-100 no-underline transition hover:border-stone-100 hover:bg-white/10"
+              >Read the notes</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative mt-10 flex min-h-72 items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-gradient-to-br from-[#eeae70]/35 via-[#a25d70]/30 to-[#171b2d] lg:mt-0"
+        >
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,245,225,0.32),transparent_45%)]" />
+          <img
+            src="https://meridiem.markwhen.com/logo-electron.svg"
+            alt=""
+            class="relative h-32 w-32 rounded-3xl bg-white/90 p-4 shadow-2xl shadow-black/30"
+          />
+          <span class="absolute bottom-5 font-mono text-xs tracking-[0.2em] text-orange-100">
+            AFTER HOURS
+          </span>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -519,6 +585,29 @@ onMounted(async () => {
   animation: darken-page auto linear both;
   animation-timeline: scroll(root block);
   animation-range: 0% 100%;
+}
+
+.post-meridiem-wordmark {
+  font-family: Pacifico, cursive;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  animation: reveal-post-meridiem-wordmark auto linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0% 100%;
+}
+
+@keyframes reveal-post-meridiem-wordmark {
+  0%,
+  85% {
+    opacity: 0;
+    transform: translateY(1.75rem);
+  }
+
+  95%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @property --pm-left-start {
@@ -616,12 +705,15 @@ onMounted(async () => {
   }
 
   100% {
-    color: rgb(58, 10, 88);
+    color: rgb(72, 22, 55);
     opacity: 0.78;
   }
 }
 td {
   @apply pr-8;
+}
+html {
+  background: rgb(41, 17, 68);
 }
 body {
   @apply bg-zinc-100;
@@ -676,7 +768,44 @@ a {
       100% 0%;
   }
 }
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
 
+.stars span {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: var(--star-color);
+  box-shadow: 0 0 4px 1px var(--star-glow);
+  animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
 .border-animated-2 {
   background:
     linear-gradient(90deg, #c1c1c8 50%, transparent 50%),
