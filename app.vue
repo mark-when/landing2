@@ -340,7 +340,7 @@ onMounted(async () => {
       >
         <span class="relative h-12 w-12 shrink-0 self-start">
           <Logo
-            class="bg-white absolute inset-0 h-12 w-12 rounded-xl shadow transition group-hover:shadow-lg  z-10"
+            class="bg-white absolute inset-0 h-12 w-12 rounded-xl shadow transition group-hover:shadow-lg z-10"
           ></Logo>
           <span class="absolute left-0 top-0 block h-[calc(650px+3rem)] w-12">
             <Logo
@@ -371,7 +371,7 @@ onMounted(async () => {
           class="block h-12 w-12 z-30"
         ></PostMeridiemLogo>
         <span
-          class="post-meridiem-wordmark whitespace-nowrap text-3xl font-semibold tracking-wide text-stone-100"
+          class="post-meridiem-wordmark whitespace-nowrap text-3xl font-semibold text-stone-100"
           >Post Meridiem</span
         >
       </div>
@@ -519,49 +519,15 @@ onMounted(async () => {
         <div class="sticky top-0 h-dvh overflow-hidden">
           <div class="dusk-shade absolute inset-0" />
           <div class="scroll-glow absolute inset-x-0 bottom-0 z-0 h-screen" />
-          <NightSky class="pointer-events-none absolute top-0 left-0 right-0 h-3/4 z-[1]" />
+          <NightSky
+            class="pointer-events-none absolute top-0 left-0 right-0 h-3/4 z-[1]"
+          />
         </div>
       </div>
       <section
-        class="relative z-50 mx-auto w-full max-w-[100ch] overflow-hidden rounded-3xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:p-12"
+        class="relative z-50 mx-auto w-full max-w-[100ch] overflow-hidden rounded-3xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:p-12 text-white"
       >
-        <div class="flex flex-col items-start justify-center gap-6">
-          <p class="font-mono text-xs uppercase tracking-[0.24em] text-orange-200">
-            A new way to write
-          </p>
-          <h2 class="font-serif text-4xl leading-tight text-stone-50 lg:text-6xl">
-            Make space for what happens after the plan.
-          </h2>
-          <p class="max-w-prose text-lg leading-8 text-stone-300">
-            Post Meridiem is a quieter place for notes, drafts, and the details
-            that emerge after the day has already begun.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <a
-              href="https://meridiem.markwhen.com"
-              class="rounded-full bg-orange-200 px-5 py-3 font-medium text-stone-900 no-underline transition hover:bg-orange-100"
-              >Explore Post Meridiem</a
-            >
-            <a
-              href="https://docs.markwhen.com/meridiem"
-              class="rounded-full border border-stone-400/60 px-5 py-3 font-medium text-stone-100 no-underline transition hover:border-stone-100 hover:bg-white/10"
-              >Read the notes</a
-            >
-          </div>
-        </div>
-        <div
-          class="relative mt-10 flex min-h-72 items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-gradient-to-br from-[#eeae70]/35 via-[#a25d70]/30 to-[#171b2d] lg:mt-0"
-        >
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,245,225,0.32),transparent_45%)]" />
-          <img
-            src="https://meridiem.markwhen.com/logo-electron.svg"
-            alt=""
-            class="relative h-32 w-32 rounded-3xl bg-white/90 p-4 shadow-2xl shadow-black/30"
-          />
-          <span class="absolute bottom-5 font-mono text-xs tracking-[0.2em] text-orange-100">
-            AFTER HOURS
-          </span>
-        </div>
+        <div>For $5/month</div>
       </section>
     </div>
   </div>
@@ -590,7 +556,9 @@ onMounted(async () => {
 .post-meridiem-wordmark {
   font-family: Pacifico, cursive;
   opacity: 0;
-  transform: translateY(0.75rem);
+  letter-spacing: 0.65em;
+  transform: translateX(1.5rem);
+  transform-origin: left center;
   animation: reveal-post-meridiem-wordmark auto linear both;
   animation-timeline: scroll(root block);
   animation-range: 0% 100%;
@@ -600,13 +568,14 @@ onMounted(async () => {
   0%,
   85% {
     opacity: 0;
-    transform: translateY(1.75rem);
+    letter-spacing: 0.65em;
+    transform: translateX(1.5rem);
   }
 
-  95%,
   100% {
     opacity: 1;
-    transform: translateY(0);
+    letter-spacing: 0.015em;
+    transform: translateX(0);
   }
 }
 
