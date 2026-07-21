@@ -318,7 +318,7 @@ onMounted(async () => {
         </li>
       </ol>
     </div>
-    <div class="flex flex-col items-start justify-end gap-3 px-8">
+    <div class="flex flex-col items-start justify-end gap-3 px-8" id="download">
       <select
         v-if="availableDownloads.length > 1"
         v-model="selectedDownloadId"
@@ -525,9 +525,39 @@ onMounted(async () => {
         </div>
       </div>
       <section
-        class="relative z-50 mx-auto w-full max-w-[100ch] overflow-hidden rounded-3xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:p-12 text-white"
+        class="relative z-50 mx-auto w-full max-w-[60ch] h-[65vh] overflow-scroll lg:grid lg:grid-cols-2 lg:gap-12 flex gap-4 flex-col text-white pacifico text-3xl"
       >
-        <div>For $5/month</div>
+        <div
+          class="flex items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur"
+        >
+          Local file syncing
+        </div>
+        <div
+          class="flex items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur"
+        >
+          Extended file history
+        </div>
+        <div
+          class="flex items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur"
+        >
+          Custom app icons
+        </div>
+        <div
+          class="flex items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur"
+        >
+          $5/month
+        </div>
+        <div
+          class="flex items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur"
+        >
+          More coming soon...
+        </div>
+        <a
+          class="flex items-center justify-center overflow-hidden rounded-2xl border border-orange-100/20 bg-[#1a0a2c]/85 p-6 shadow-2xl shadow-black/40 backdrop-blur"
+          href="#download"
+        >
+          Download Meridiem
+        </a>
       </section>
     </div>
   </div>
@@ -553,6 +583,9 @@ onMounted(async () => {
   animation-range: 0% 100%;
 }
 
+.pacifico {
+  font-family: Pacifico, cursive;
+}
 .post-meridiem-wordmark {
   font-family: Pacifico, cursive;
   opacity: 0;
@@ -682,7 +715,7 @@ td {
   @apply pr-8;
 }
 html {
-  background: rgb(41, 17, 68);
+  background: rgb(68, 17, 49);
 }
 body {
   @apply bg-zinc-100;
