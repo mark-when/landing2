@@ -19,6 +19,7 @@
     <div class="flex flex-col">
       <a href="https://github.com/mark-when">Github</a>
       <table>
+        <tbody>
         <tr>
           <td>
             <a href="https://github.com/mark-when/landing2">This website</a>
@@ -244,6 +245,7 @@
             </iframe>
           </td>
         </tr>
+        </tbody>
       </table>
     </div>
   </div>
