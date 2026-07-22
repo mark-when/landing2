@@ -177,7 +177,145 @@ watch(detectedOs, () => {
   }
 });
 
+const clamp = (value: number) => Math.min(1, Math.max(0, value));
+const between = (progress: number, start: number, end: number) =>
+  clamp((progress - start) / (end - start));
+const mix = (from: number, to: number, progress: number) =>
+  from + (to - from) * progress;
+const mixColor = (
+  from: readonly number[],
+  to: readonly number[],
+  progress: number,
+) =>
+  `rgb(${from.map((channel, index) => Math.round(mix(channel, to[index], progress))).join(" ")})`;
+
+let removeScrollTimelineFallback: (() => void) | undefined;
+
+const installScrollTimelineFallback = () => {
+  if (CSS.supports("animation-timeline", "scroll()")) return;
+
+  const root = document.documentElement;
+  const fallbackProperties = [
+    "--fallback-dusk-opacity",
+    "--fallback-glow-opacity",
+    "--fallback-glow-color",
+    "--fallback-wordmark-opacity",
+    "--fallback-wordmark-spacing",
+    "--fallback-wordmark-offset",
+    "--fallback-logo-opacity",
+    "--fallback-pm-left-start",
+    "--fallback-pm-left-end",
+    "--fallback-pm-middle-start",
+    "--fallback-pm-middle-end",
+    "--fallback-pm-right-start",
+    "--fallback-pm-right-end",
+    "--fallback-night-sky-opacity",
+  ];
+  let frame: number | undefined;
+
+  const update = () => {
+    frame = undefined;
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? clamp(window.scrollY / scrollableHeight) : 0;
+
+    const duskOpacity =
+      progress <= 0.35
+        ? 0
+        : progress <= 0.7
+          ? mix(0, 0.8, between(progress, 0.35, 0.7))
+          : mix(0.8, 0.95, between(progress, 0.7, 1));
+    const glowStops = [
+      { at: 0, color: [255, 224, 196], opacity: 0.03 },
+      { at: 0.38, color: [249, 115, 22], opacity: 0.18 },
+      { at: 0.68, color: [220, 38, 75], opacity: 0.42 },
+      { at: 1, color: [72, 22, 55], opacity: 0.78 },
+    ];
+    const glowStop = glowStops.findIndex((stop) => progress <= stop.at);
+    const nextGlowStop = glowStops[Math.max(1, glowStop)];
+    const previousGlowStop = glowStops[Math.max(0, glowStop - 1)];
+    const glowProgress = between(progress, previousGlowStop.at, nextGlowStop.at);
+    const wordmarkProgress = between(progress, 0.85, 1);
+    const logoOpacity =
+      progress <= 0.2
+        ? 0.05
+        : progress <= 0.45
+          ? mix(0.05, 0.55, between(progress, 0.2, 0.45))
+          : mix(0.55, 1, between(progress, 0.45, 1));
+    const logoColorProgress = between(progress, 0.45, 1);
+    const nightSkyOpacity =
+      progress <= 0.48
+        ? 0
+        : progress <= 0.72
+          ? mix(0, 0.5, between(progress, 0.48, 0.72))
+          : mix(0.5, 0.8, between(progress, 0.72, 1));
+
+    root.style.setProperty("--fallback-dusk-opacity", `${duskOpacity}`);
+    root.style.setProperty(
+      "--fallback-glow-opacity",
+      `${mix(previousGlowStop.opacity, nextGlowStop.opacity, glowProgress)}`,
+    );
+    root.style.setProperty(
+      "--fallback-glow-color",
+      mixColor(previousGlowStop.color, nextGlowStop.color, glowProgress),
+    );
+    root.style.setProperty("--fallback-wordmark-opacity", `${wordmarkProgress}`);
+    root.style.setProperty(
+      "--fallback-wordmark-spacing",
+      `${mix(0.65, 0.015, wordmarkProgress)}em`,
+    );
+    root.style.setProperty(
+      "--fallback-wordmark-offset",
+      `${mix(1.5, 0, wordmarkProgress)}rem`,
+    );
+    root.style.setProperty("--fallback-logo-opacity", `${logoOpacity}`);
+    root.style.setProperty(
+      "--fallback-pm-left-start",
+      mixColor([150, 180, 175], [209, 225, 212], logoColorProgress),
+    );
+    root.style.setProperty(
+      "--fallback-pm-left-end",
+      mixColor([140, 173, 158], [145, 167, 159], logoColorProgress),
+    );
+    root.style.setProperty(
+      "--fallback-pm-middle-start",
+      mixColor([103, 137, 105], [244, 198, 128], logoColorProgress),
+    );
+    root.style.setProperty(
+      "--fallback-pm-middle-end",
+      mixColor([46, 79, 53], [232, 163, 110], logoColorProgress),
+    );
+    root.style.setProperty(
+      "--fallback-pm-right-start",
+      mixColor([58, 92, 65], [242, 143, 136], logoColorProgress),
+    );
+    root.style.setProperty(
+      "--fallback-pm-right-end",
+      mixColor([29, 58, 35], [162, 93, 112], logoColorProgress),
+    );
+    root.style.setProperty("--fallback-night-sky-opacity", `${nightSkyOpacity}`);
+  };
+
+  const scheduleUpdate = () => {
+    if (frame === undefined) frame = window.requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate, { passive: true });
+  update();
+
+  removeScrollTimelineFallback = () => {
+    window.removeEventListener("scroll", scheduleUpdate);
+    window.removeEventListener("resize", scheduleUpdate);
+    if (frame !== undefined) window.cancelAnimationFrame(frame);
+    fallbackProperties.forEach((property) => root.style.removeProperty(property));
+  };
+};
+
+onBeforeUnmount(() => removeScrollTimelineFallback?.());
+
 onMounted(async () => {
+  installScrollTimelineFallback();
+
   void fetch("https://meridiem.markwhen.com/bella/recipes.raw")
     .then(async (res) => {
       if (!res.ok) {
@@ -217,6 +355,7 @@ onMounted(async () => {
     selectedDownloadId.value = availableDownloadIds.value[0];
   }
 });
+
 </script>
 <template>
   <div
@@ -711,6 +850,38 @@ onMounted(async () => {
     opacity: 0.78;
   }
 }
+
+@supports not (animation-timeline: scroll()) {
+  .scroll-glow {
+    animation: none;
+    color: var(--fallback-glow-color, rgb(255, 224, 196));
+    opacity: var(--fallback-glow-opacity, 0.03);
+  }
+
+  .dusk-shade {
+    animation: none;
+    opacity: var(--fallback-dusk-opacity, 0);
+  }
+
+  .post-meridiem-wordmark {
+    animation: none;
+    opacity: var(--fallback-wordmark-opacity, 0);
+    letter-spacing: var(--fallback-wordmark-spacing, 0.65em);
+    transform: translateX(var(--fallback-wordmark-offset, 1.5rem));
+  }
+
+  #iframeLogo {
+    animation: none;
+    opacity: var(--fallback-logo-opacity, 0.05);
+    --pm-left-start: var(--fallback-pm-left-start, #96b4af);
+    --pm-left-end: var(--fallback-pm-left-end, #8cad9e);
+    --pm-middle-start: var(--fallback-pm-middle-start, #678969);
+    --pm-middle-end: var(--fallback-pm-middle-end, #2e4f35);
+    --pm-right-start: var(--fallback-pm-right-start, #3a5c41);
+    --pm-right-end: var(--fallback-pm-right-end, #1d3a23);
+  }
+}
+
 td {
   @apply pr-8;
 }

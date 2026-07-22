@@ -93,6 +93,13 @@ const stars = Array.from({ length: STAR_COUNT }, (_, index) => {
   }
 }
 
+@supports not (animation-timeline: scroll()) {
+  .night-sky {
+    animation: none;
+    opacity: var(--fallback-night-sky-opacity, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .star {
     animation: none;
