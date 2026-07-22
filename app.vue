@@ -424,7 +424,7 @@ onMounted(async () => {
       </div>
       <div class="row-start-2 col-span-1 flex flex-col">
         <fieldset
-          class="border border-zinc-400 rounded-sm flex grow flex-col gap-2"
+          class="border border-zinc-400 rounded-sm flex grow flex-col gap-2 max-h-80"
         >
           <legend class="px-1 mx-1 playfair inline-table bg-transparent">
             <a
