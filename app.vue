@@ -362,7 +362,7 @@ onMounted(async () => {
     </div>
   </div>
   <div class="relative">
-    <div
+    <!-- <div
       class="pointer-events-none absolute inset-y-2 left-10 lg:left-[calc(50%-50ch+1.5rem)] z-40 w-max"
     >
       <div class="sticky top-[calc(20vh-2rem)] flex items-center gap-3">
@@ -375,7 +375,7 @@ onMounted(async () => {
           >Post Meridiem</span
         >
       </div>
-    </div>
+    </div> -->
     <div class="relative z-50 px-4 pb-24 pt-2 w-full flex flex-col">
       <fieldset
         class="flex flex-col w-full lg:w-[100ch] xl:w-2/3 mx-auto group shadow-lg rounded-b-xl"
@@ -512,7 +512,7 @@ onMounted(async () => {
       </div>
     </div>
     <Links></Links>
-    <div
+    <!-- <div
       class="relative flex min-h-[9000px] w-screen flex-col justify-end px-4 pb-24"
     >
       <div class="pointer-events-none absolute inset-0 z-30">
@@ -559,7 +559,7 @@ onMounted(async () => {
           Download Meridiem
         </a>
       </section>
-    </div>
+    </div> -->
   </div>
 </template>
 
